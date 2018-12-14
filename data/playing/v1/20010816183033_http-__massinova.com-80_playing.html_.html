@@ -1,0 +1,303 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head>
+<meta name="generator" content=
+"HTML Tidy for Mac OS X (vers 31 October 2006 - Apple Inc. build 15.18.1), see www.w3.org">
+<title>Massinova.nowplaying()</title>
+<meta http-equiv="refresh" content=
+"120; url=http://web.archive.org/web/20010816183033/http://massinova.main-net.com/playing.html">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Script-Type" content="text/JavaScript">
+<link rel="StyleSheet" href=
+"/web/20010816183033cs_/http://massinova.com:80/style.css" type=
+"text/css">
+<script type="text/javascript">
+        // Preload the buttons
+
+        sources = new Array("graphics/btnPlaying.GIF",
+                                                "graphics/btnMusic.GIF",
+                                                "graphics/btnFavorites.GIF",
+                                                "graphics/btnForum.GIF",
+                                                "graphics/btnGear.GIF",
+                                                "graphics/btnInfo.GIF"
+                                                );
+
+        highlights = new Array("graphics/btnPlayingh.GIF",
+                                                        "graphics/btnMusich.GIF",
+                                                        "graphics/btnFavoritesh.GIF",
+                                                        "graphics/btnForumh.GIF",
+                                                        "graphics/btnGearh.GIF",
+                                                        "graphics/btnInfoh.GIF"
+                                                        );
+
+        load(6);
+
+        function load (number) {
+                button = new Array(number);
+                for (i = 0; i < number; i++) {
+                        button[i] = new Array(2);
+                        button[i][0] = new Image();
+                        button[i][0].src = sources[i];
+                        button[i][1] = new Image();
+                        button[i][1].src = highlights[i];
+                }
+        }
+
+        function highlight (index) {
+                document.images['button'+index].src = button[index][1].src;
+        }
+
+        function reset () {
+                for (i = 0; i < button.length; i++) {
+                        if (document.images['button'+i]) {
+                                document.images['button' + i].src = button[i][0].src;
+                        }
+                }
+        }
+
+</script>
+</head>
+<body background=
+"/web/20010816183033im_/http://massinova.com:80/graphics/background.GIF"
+bgcolor="#3B4559" text="#FFFFFF" link="#FFB41E" vlink="#E78C00"
+alink="#202433" marginheight="0" marginwidth="0" topmargin="0"
+leftmargin="0">
+<table border="0" cellpadding="0" cellspacing="0" width="580">
+<tr>
+<td colspan="2"><img src=
+"/web/20010816183033im_/http://massinova.com:80/graphics/spacer.GIF"
+width="5" height="10"></td>
+</tr>
+<tr>
+<td rowspan="3"><img src=
+"/web/20010816183033im_/http://massinova.com:80/graphics/spacer.GIF"
+width="5" height="67"><br>
+<img src=
+"/web/20010816183033im_/http://massinova.com:80/graphics/logo.GIF"
+alt="" width="158" height="104"></td>
+<td align="right" valign="top"><img src=
+"/web/20010816183033im_/http://massinova.com:80/graphics/playingHdr.GIF"
+alt="" width="346" height="78"></td>
+</tr>
+<tr>
+<td align="right"><img src=
+"/web/20010816183033im_/http://massinova.com:80/graphics/spacer.GIF"
+align="right" width="5" height="31"></td>
+</tr>
+<tr>
+<td align="left"><img src=
+"/web/20010816183033im_/http://massinova.com:80/graphics/massinova.GIF"
+alt="" width="422" height="62"></td>
+</tr>
+<tr>
+<td></td>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td><a href="playing.html" onmouseover="highlight('0')" onmouseout=
+"reset()"><img name="button0" src=
+"/web/20010816183033im_/http://massinova.com:80/graphics/btnPlaying.GIF"
+alt="" width="66" height="17" border="0" vspace="5"></a></td>
+<td><a href="music.html" onmouseover="highlight('1')" onmouseout=
+"reset()"><img name="button1" src=
+"/web/20010816183033im_/http://massinova.com:80/graphics/btnMusic.GIF"
+alt="" width="63" height="17" border="0" vspace="5"></a></td>
+<td><a href="favorites.html" onmouseover="highlight('2')"
+onmouseout="reset()"><img name="button2" src=
+"/web/20010816183033im_/http://massinova.com:80/graphics/btnFavorites.GIF"
+alt="" width="82" height="17" border="0" vspace="5"></a></td>
+<td><a href="forums" target="intro" onmouseover="highlight('3')"
+onmouseout="reset()"><img name="button3" src=
+"/web/20010816183033im_/http://massinova.com:80/graphics/btnForum.GIF"
+alt="" width="58" height="17" border="0" vspace="5"></a></td>
+<td><a href=
+"http://web.archive.org/web/20010816183033/http://www.togaworld.com/gallery.cfm?ID=1051"
+target="intro" onmouseover="highlight('4')" onmouseout=
+"reset()"><img name="button4" src=
+"/web/20010816183033im_/http://massinova.com:80/graphics/btnGear.GIF"
+alt="" width="49" height="17" border="0" vspace="5"></a></td>
+<td><a href="info.html" onmouseover="highlight('5')" onmouseout=
+"reset()"><img name="button5" src=
+"/web/20010816183033im_/http://massinova.com:80/graphics/btnInfo.GIF"
+alt="" width="43" height="17" border="0" vspace="5"></a></td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td align="center" colspan="2">
+<!-- Removed for the sake of harmony with the RIAA -->
+<!--
+                <FONT FACE="Tahoma,Helvetica,Arial,sans-serif" COLOR="#e78c00" SIZE=2>
+                upcoming songs:</FONT><BR>
+                
+                <TABLE WIDTH=100% BORDER=0 CELLSPACING=2 CELLPADDING=0>
+                        
+                                </TABLE>
+                <BR>
+                -->
+<table width="560" border="0" background=
+"/web/20010816183033im_/http://massinova.com:80/playing.html">
+<tr>
+<td><font class="heading">.: now playing</font><br>
+<font class="nowPlaying"><b><a href=
+"/web/20010816183033/http://massinova.com:80/song.html?id=197"
+class="nowPlaying">Halcyon+On+On</a></b><a href=
+"playing.html?id=197&amp;fav=add" onmouseover=
+"document.images['heart'].src = '/graphics/addfav.GIF'" onmouseout=
+"document.images['heart'].src = '/graphics/notfav.GIF'"><img name=
+"heart" src=
+"/web/20010816183033im_/http://massinova.com:80/graphics/notfav.GIF"
+alt="Add this song to your favorites..." width="18" height="14"
+border="0" hspace="5"></a><br>
+&nbsp;by&nbsp;<a href=
+"/web/20010816183033/http://massinova.com:80/music.html?lib=artist&amp;artist=Orbital"
+class="nowPlaying">Orbital</a></font></td>
+</tr>
+</table>
+<table width="560" border="0" cellspacing="2" cellpadding="0">
+<tr>
+<td valign="top"><font class="heading">.: recently
+played</font><br>
+<a href=
+"/web/20010816183033/http://massinova.com:80/song.html?id=337"
+class="song"><font class="song">Operatique</font></a><font class=
+"artist">&nbsp;&nbsp;by&nbsp;<a href=
+"/web/20010816183033/http://massinova.com:80/music.html?lib=artist&amp;artist=Cold+Storage"
+class="artist">Cold&nbsp;Storage</a></font><br>
+<a href=
+"/web/20010816183033/http://massinova.com:80/song.html?id=203"
+class="song"><font class="song">Keep Hope
+Alive</font></a><font class="artist">&nbsp;&nbsp;by&nbsp;<a href=
+"/web/20010816183033/http://massinova.com:80/music.html?lib=artist&amp;artist=The+Crystal+Method"
+class="artist">The&nbsp;Crystal&nbsp;Method</a></font><br>
+<a href=
+"/web/20010816183033/http://massinova.com:80/song.html?id=132"
+class="song"><font class="song">Blue Skies</font></a><font class=
+"artist">&nbsp;&nbsp;by&nbsp;<a href=
+"/web/20010816183033/http://massinova.com:80/music.html?lib=artist&amp;artist=BT"
+class="artist">BT</a></font><br>
+<a href=
+"/web/20010816183033/http://massinova.com:80/song.html?id=204"
+class="song"><font class="song">Trip Like I
+Do</font></a><font class="artist">&nbsp;&nbsp;by&nbsp;<a href=
+"/web/20010816183033/http://massinova.com:80/music.html?lib=artist&amp;artist=The+Crystal+Method"
+class="artist">The&nbsp;Crystal&nbsp;Method</a></font><br>
+<a href=
+"/web/20010816183033/http://massinova.com:80/song.html?id=251"
+class="song"><font class="song">Enjoy</font></a><font class=
+"artist">&nbsp;&nbsp;by&nbsp;<a href=
+"/web/20010816183033/http://massinova.com:80/music.html?lib=artist&amp;artist=Robert+Miles"
+class="artist">Robert&nbsp;Miles</a></font><br>
+<a href=
+"/web/20010816183033/http://massinova.com:80/song.html?id=661"
+class="song"><font class="song">Password</font></a><font class=
+"artist">&nbsp;&nbsp;by&nbsp;<a href=
+"/web/20010816183033/http://massinova.com:80/music.html?lib=artist&amp;artist=Paul+Oakenfold"
+class="artist">Paul&nbsp;Oakenfold</a></font><br>
+<a href=
+"/web/20010816183033/http://massinova.com:80/song.html?id=487"
+class="song"><font class="song">I Believe</font></a><font class=
+"artist">&nbsp;&nbsp;by&nbsp;<a href=
+"/web/20010816183033/http://massinova.com:80/music.html?lib=artist&amp;artist=Lange"
+class="artist">Lange</a></font><br>
+<a href=
+"/web/20010816183033/http://massinova.com:80/song.html?id=482"
+class="song"><font class="song">Dr. Jones (Antiloop Club
+Mix)</font></a><font class="artist">&nbsp;&nbsp;by&nbsp;<a href=
+"/web/20010816183033/http://massinova.com:80/music.html?lib=artist&amp;artist=Aqua"
+class="artist">Aqua</a></font><br></td>
+<td valign="top"><font class="heading">.: requested songs
+<font class="headingSub">[</font>&nbsp;<a href=
+"/web/20010816183033/http://massinova.com:80/requests.html" class=
+"heading">more</a>&nbsp;<font class=
+"headingSub">]</font></font><br>
+<table width="100%" border="0" cellspacing="2" cellpadding="0">
+<tr>
+<td align="right" valign="top" width="10%"><font class=
+"artist">3&nbsp;-&nbsp;</font></td>
+<td valign="top"><b><a href=
+"/web/20010816183033/http://massinova.com:80/song.html?id=197"
+class="song">Halcyon+On+On</a></b></td>
+</tr>
+<tr>
+<td align="right" valign="top" width="10%"><font class=
+"artist">1&nbsp;-&nbsp;</font></td>
+<td valign="top"><b><a href=
+"/web/20010816183033/http://massinova.com:80/song.html?id=647"
+class="song">Join Me</a></b></td>
+</tr>
+<tr>
+<td align="right" valign="top" width="10%"><font class=
+"artist">1&nbsp;-&nbsp;</font></td>
+<td valign="top"><b><a href=
+"/web/20010816183033/http://massinova.com:80/song.html?id=660"
+class="song">Passion Lights The Way</a></b></td>
+</tr>
+<tr>
+<td align="right" valign="top" width="10%"><font class=
+"artist">1&nbsp;-&nbsp;</font></td>
+<td valign="top"><b><a href=
+"/web/20010816183033/http://massinova.com:80/song.html?id=653"
+class="song">Neverending Dreams (DJ C.A. Mix)</a></b></td>
+</tr>
+<tr>
+<td align="right" valign="top" width="10%"><font class=
+"artist">1&nbsp;-&nbsp;</font></td>
+<td valign="top"><b><a href=
+"/web/20010816183033/http://massinova.com:80/song.html?id=684"
+class="song">Take Your Time</a></b></td>
+</tr>
+<tr>
+<td align="right" valign="top" width="10%"><font class=
+"artist">1&nbsp;-&nbsp;</font></td>
+<td valign="top"><b><a href=
+"/web/20010816183033/http://massinova.com:80/song.html?id=679"
+class="song">This Is Who We Are (Steve Morley Mix)</a></b></td>
+</tr>
+<tr>
+<td align="right" valign="top" width="10%"><font class=
+"artist">1&nbsp;-&nbsp;</font></td>
+<td valign="top"><b><a href=
+"/web/20010816183033/http://massinova.com:80/song.html?id=402"
+class="song">Someone (Vocal Mix)</a></b></td>
+</tr>
+</table>
+</td>
+<td width="120" valign="top" align="center"><a href=
+"chart.html"><img src=
+"/web/20010816183033im_/http://massinova.com:80/graphics/chartBtn.GIF"
+alt="Popular songs on Massinova..." width="88" height="31" border=
+"0"></a><br>
+<a href="listen.html"><img src=
+"/web/20010816183033im_/http://massinova.com:80/graphics/cListen.GIF"
+alt="Click here to listen!" width="95" height="75" border=
+"0"></a><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<!--
+     FILE ARCHIVED ON 18:30:33 Aug 16, 2001 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 08:38:43 Dec 12, 2018.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  LoadShardBlock: 74.941 (3)
+  esindex: 0.008
+  captures_list: 98.053
+  CDXLines.iter: 10.24 (3)
+  PetaboxLoader3.datanode: 128.262 (4)
+  exclusion.robots: 0.17
+  exclusion.robots.policy: 0.159
+  RedisCDXSource: 10.078
+  PetaboxLoader3.resolve: 15.814
+  load_resource: 82.018
+-->
+</body>
+</html>

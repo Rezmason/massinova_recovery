@@ -1,0 +1,263 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head>
+<meta name="generator" content=
+"HTML Tidy for Mac OS X (vers 31 October 2006 - Apple Inc. build 15.18.1), see www.w3.org">
+<title>Massinova.music()</title>
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Script-Type" content="text/JavaScript">
+<link rel="StyleSheet" href=
+"/web/20010920063614cs_/http://massinova.com:80/style.css" type=
+"text/css">
+<script type="text/javascript">
+        
+        // Preload the buttons
+                
+        sources = new Array("graphics/btnPlaying.GIF",
+                                                "graphics/btnMusic.GIF",
+                                                "graphics/btnFavorites.GIF",
+                                                "graphics/btnForum.GIF",
+                                                "graphics/btnGear.GIF",
+                                                "graphics/btnInfo.GIF"
+                                                );
+                                                
+        highlights = new Array("graphics/btnPlayingh.GIF",
+                                                        "graphics/btnMusich.GIF",
+                                                        "graphics/btnFavoritesh.GIF",
+                                                        "graphics/btnForumh.GIF",
+                                                        "graphics/btnGearh.GIF",
+                                                        "graphics/btnInfoh.GIF"
+                                                        );
+
+        load(6);
+
+        function load (number) {
+
+                button = new Array(number);
+
+                for (i = 0; i < number; i++) {
+                        button[i] = new Array(2);
+                        button[i][0] = new Image();
+                        button[i][0].src = sources[i];
+                        button[i][1] = new Image();
+                        button[i][1].src = highlights[i];
+                }
+                
+        }
+
+        function highlight (index) {
+                document.images['button'+index].src = button[index][1].src;
+        }
+        
+        function reset () {
+                for (i = 0; i < button.length; i++) {
+                        if (document.images['button'+i]) {
+                                document.images['button' + i].src = button[i][0].src;
+                        }
+                }
+        }
+
+</script>
+</head>
+<body background=
+"/web/20010920063614im_/http://massinova.com:80/graphics/background.GIF"
+bgcolor="#3B4559" text="#FFFFFF" link="#FFB41E" vlink="#E78C00"
+alink="#202433" marginheight="0" marginwidth="0" topmargin="0"
+leftmargin="0">
+<table border="0" cellpadding="0" cellspacing="0" width="580">
+<tr>
+<td colspan="2"><img src=
+"/web/20010920063614im_/http://massinova.com:80/graphics/spacer.GIF"
+width="5" height="10"></td>
+</tr>
+<tr>
+<td rowspan="2"><img src=
+"/web/20010920063614im_/http://massinova.com:80/graphics/spacer.GIF"
+width="5" height="67"><br>
+<img src=
+"/web/20010920063614im_/http://massinova.com:80/graphics/logo.GIF"
+alt="" width="158" height="104"></td>
+<td align="right" valign="top"><img src=
+"/web/20010920063614im_/http://massinova.com:80/graphics/chartHdr.GIF"
+alt="" width="254" height="78"></td>
+</tr>
+<tr>
+<td align="left"><spacer type="block" height="31"><br>
+<img src=
+"/web/20010920063614im_/http://massinova.com:80/graphics/massinova.GIF"
+alt="" width="422" height="62"></td>
+</tr>
+<tr>
+<td></td>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td><a href="playing.html" onmouseover="highlight('0')" onmouseout=
+"reset()"><img name="button0" src=
+"/web/20010920063614im_/http://massinova.com:80/graphics/btnPlaying.GIF"
+alt="" width="66" height="17" border="0" vspace="5"></a></td>
+<td><a href="music.html" onmouseover="highlight('1')" onmouseout=
+"reset()"><img name="button1" src=
+"/web/20010920063614im_/http://massinova.com:80/graphics/btnMusic.GIF"
+alt="" width="63" height="17" border="0" vspace="5"></a></td>
+<td><a href="favorites.html" onmouseover="highlight('2')"
+onmouseout="reset()"><img name="button2" src=
+"/web/20010920063614im_/http://massinova.com:80/graphics/btnFavorites.GIF"
+alt="" width="82" height="17" border="0" vspace="5"></a></td>
+<td><a href="forums" target="intro" onmouseover="highlight('3')"
+onmouseout="reset()"><img name="button3" src=
+"/web/20010920063614im_/http://massinova.com:80/graphics/btnForum.GIF"
+alt="" width="58" height="17" border="0" vspace="5"></a></td>
+<td><a href=
+"http://web.archive.org/web/20010920063614/http://www.togaworld.com/gallery.cfm?ID=1051"
+target="intro" onmouseover="highlight('4')" onmouseout=
+"reset()"><img name="button4" src=
+"/web/20010920063614im_/http://massinova.com:80/graphics/btnGear.GIF"
+alt="" width="49" height="17" border="0" vspace="5"></a></td>
+<td><a href="info.html" onmouseover="highlight('5')" onmouseout=
+"reset()"><img name="button5" src=
+"/web/20010920063614im_/http://massinova.com:80/graphics/btnInfo.GIF"
+alt="" width="43" height="17" border="0" vspace="5"></a></td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td align="center" colspan="2"><br>
+<table width="550" height="280" cellpadding="0" cellspacing="0"
+border="0">
+<tr>
+<td align="center">
+<table cellspacing="1" cellpadding="4" width="100%" border="0">
+<tr>
+<td><font class="chart">random10</font></td>
+</tr>
+<tr>
+<td bgcolor="#657699"><font class=
+"location"><b>1</b></font>&nbsp;<font class="location"><b><a href=
+"/web/20010920063614/http://massinova.com:80/song.html?id=300">Big
+House</a></b></font><font class=
+"nowPlaying">&nbsp;&nbsp;by&nbsp;<a href=
+"/web/20010920063614/http://massinova.com:80/music.html?lib=artist&amp;artist=Strobed"
+class="nowPlaying">Strobed</a></font></td>
+</tr>
+<tr>
+<td valign="top" bgcolor="#3B4559"><font class=
+"data"><b>2</b></font>&nbsp;<font class="song">&nbsp;<a href=
+"/web/20010920063614/http://massinova.com:80/song.html?id=136"
+class="song"><b>Red Snapper</b></a></font><font class=
+"artist">&nbsp;&nbsp;by&nbsp;<a href=
+"/web/20010920063614/http://massinova.com:80/music.html?lib=artist&amp;artist=K90"
+class="artist">K90</a></font><br>
+<font class="data"><b>3</b></font>&nbsp;<font class=
+"song">&nbsp;<a href=
+"/web/20010920063614/http://massinova.com:80/song.html?id=222"
+class="song"><b>My Dream</b></a></font><font class=
+"artist">&nbsp;&nbsp;by&nbsp;<a href=
+"/web/20010920063614/http://massinova.com:80/music.html?lib=artist&amp;artist=ATB"
+class="artist">ATB</a></font><br>
+<font class="data"><b>4</b></font>&nbsp;<font class=
+"song">&nbsp;<a href=
+"/web/20010920063614/http://massinova.com:80/song.html?id=176"
+class="song"><b>Words</b></a></font><font class=
+"artist">&nbsp;&nbsp;by&nbsp;<a href=
+"/web/20010920063614/http://massinova.com:80/music.html?lib=artist&amp;artist=Paul+Van+Dyk"
+class="artist">Paul&nbsp;Van&nbsp;Dyk</a></font><br>
+<font class="data"><b>5</b></font>&nbsp;<font class=
+"song">&nbsp;<a href=
+"/web/20010920063614/http://massinova.com:80/song.html?id=227"
+class="song"><b>Sunday</b></a></font><font class=
+"artist">&nbsp;&nbsp;by&nbsp;<a href=
+"/web/20010920063614/http://massinova.com:80/music.html?lib=artist&amp;artist=Ayla"
+class="artist">Ayla</a></font><br>
+<font class="data"><b>6</b></font>&nbsp;<font class=
+"song">&nbsp;<a href=
+"/web/20010920063614/http://massinova.com:80/song.html?id=403"
+class="song"><b>Stellar Supreme</b></a></font><font class=
+"artist">&nbsp;&nbsp;by&nbsp;<a href=
+"/web/20010920063614/http://massinova.com:80/music.html?lib=artist&amp;artist=Cosmic+Baby"
+class="artist">Cosmic&nbsp;Baby</a></font><br>
+<font class="data"><b>7</b></font>&nbsp;<font class=
+"song">&nbsp;<a href=
+"/web/20010920063614/http://massinova.com:80/song.html?id=658"
+class="song"><b>Out Of Control</b></a></font><font class=
+"artist">&nbsp;&nbsp;by&nbsp;<a href=
+"/web/20010920063614/http://massinova.com:80/music.html?lib=artist&amp;artist=Darude"
+class="artist">Darude</a></font><br>
+<font class="data"><b>8</b></font>&nbsp;<font class=
+"song">&nbsp;<a href=
+"/web/20010920063614/http://massinova.com:80/song.html?id=556"
+class="song"><b>Phazed Reality</b></a></font><font class=
+"artist">&nbsp;&nbsp;by&nbsp;<a href=
+"/web/20010920063614/http://massinova.com:80/music.html?lib=artist&amp;artist=trance[]control"
+class="artist">trance[]control</a></font><br>
+<font class="data"><b>9</b></font>&nbsp;<font class=
+"song">&nbsp;<a href=
+"/web/20010920063614/http://massinova.com:80/song.html?id=716"
+class="song"><b>Unreal</b></a></font><font class=
+"artist">&nbsp;&nbsp;by&nbsp;<a href=
+"/web/20010920063614/http://massinova.com:80/music.html?lib=artist&amp;artist=Doran"
+class="artist">Doran</a></font><br>
+<font class="data"><b>10</b></font>&nbsp;<font class=
+"song">&nbsp;<a href=
+"/web/20010920063614/http://massinova.com:80/song.html?id=204"
+class="song"><b>Trip Like I Do</b></a></font><font class=
+"artist">&nbsp;&nbsp;by&nbsp;<a href=
+"/web/20010920063614/http://massinova.com:80/music.html?lib=artist&amp;artist=The+Crystal+Method"
+class="artist">The&nbsp;Crystal&nbsp;Method</a></font><br></td>
+</tr>
+</table>
+</td>
+<td valign="bottom" align="right" rowspan="3"><img src=
+"/web/20010920063614im_/http://massinova.com:80/graphics/01project.GIF"
+width="122" height="79"><br>
+<img src=
+"/web/20010920063614im_/http://massinova.com:80/graphics/01text.GIF"
+width="130" height="31"><br>
+<img src=
+"/web/20010920063614im_/http://massinova.com:80/graphics/01slide.GIF"
+width="155" height="81"></td>
+</tr>
+<tr>
+<td align="right" valign="bottom" nowrap><map name="menuMap">
+<area shape="rect" coords="56,0,73,10" href="chart.html?chart=top">
+<area shape="rect" coords="88,0,122,10" href=
+"chart.html?chart=bottom">
+<area shape="rect" coords="137,0,186,10" href=
+"chart.html?chart=fav">
+<area shape="rect" coords="202,0,235,10" href=
+"chart.html?chart=new">
+<area shape="rect" coords="251,0,284,10" href=
+"chart.html?chart=rand"></map> <img src=
+"/web/20010920063614im_/http://massinova.com:80/graphics/01chartNav.GIF"
+width="336" height="17" border="0" usemap="#menuMap"><img src=
+"/web/20010920063614im_/http://massinova.com:80/graphics/01slide2.GIF"
+width="65" height="29" border="0"></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<!--
+     FILE ARCHIVED ON 06:36:14 Sep 20, 2001 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 08:00:51 Dec 12, 2018.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  LoadShardBlock: 61.522 (3)
+  esindex: 0.008
+  captures_list: 82.617
+  CDXLines.iter: 16.186 (3)
+  PetaboxLoader3.datanode: 66.236 (4)
+  exclusion.robots: 0.226
+  exclusion.robots.policy: 0.214
+  RedisCDXSource: 0.71
+  PetaboxLoader3.resolve: 29.584
+  load_resource: 61.324
+-->
+</body>
+</html>

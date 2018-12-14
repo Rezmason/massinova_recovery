@@ -1,0 +1,291 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head>
+<meta name="generator" content=
+"HTML Tidy for Mac OS X (vers 31 October 2006 - Apple Inc. build 15.18.1), see www.w3.org">
+<title>Massinova.nowplaying()</title>
+<meta http-equiv="refresh" content=
+"120; url=http://web.archive.org/web/20011206100933/http://massinova.com/playing.html">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Script-Type" content="text/JavaScript">
+<link rel="StyleSheet" href=
+"/web/20011206100933cs_/http://massinova.com:80/style.css" type=
+"text/css">
+<script type="text/javascript">
+        // Preload the buttons
+
+        sources = new Array("graphics/btnPlaying.GIF",
+                                                "graphics/btnMusic.GIF",
+                                                "graphics/btnFavorites.GIF",
+                                                "graphics/btnChart.GIF",
+                                                "graphics/btnInfo.GIF"
+                                                );
+
+        highlights = new Array("graphics/btnPlayingh.GIF",
+                                                        "graphics/btnMusich.GIF",
+                                                        "graphics/btnFavoritesh.GIF",
+                                                        "graphics/btnCharth.GIF",
+                                                        "graphics/btnInfoh.GIF"
+                                                        );
+
+        load(5);
+
+        function load (number) {
+                button = new Array(number);
+                for (i = 0; i < number; i++) {
+                        button[i] = new Array(2);
+                        button[i][0] = new Image();
+                        button[i][0].src = sources[i];
+                        button[i][1] = new Image();
+                        button[i][1].src = highlights[i];
+                }
+        }
+
+        function highlight (index) {
+                document.images['button'+index].src = button[index][1].src;
+        }
+
+        function reset () {
+                for (i = 0; i < button.length; i++) {
+                        if (document.images['button'+i]) {
+                                document.images['button' + i].src = button[i][0].src;
+                        }
+                }
+        }
+</script>
+</head>
+<body background=
+"/web/20011206100933im_/http://massinova.com:80/graphics/background.GIF"
+bgcolor="#3B4559" text="#FFFFFF" link="#FFB41E" vlink="#E78C00"
+alink="#202433" marginheight="0" marginwidth="0" topmargin="0"
+leftmargin="0">
+<table border="0" cellpadding="0" cellspacing="0" width="580">
+<tr>
+<td colspan="2"><img src=
+"/web/20011206100933im_/http://massinova.com:80/graphics/spacer.GIF"
+width="5" height="10"></td>
+</tr>
+<tr>
+<td rowspan="3"><img src=
+"/web/20011206100933im_/http://massinova.com:80/graphics/spacer.GIF"
+width="5" height="67"><br>
+<img src=
+"/web/20011206100933im_/http://massinova.com:80/graphics/logo.GIF"
+alt="" width="158" height="104"></td>
+<td align="right" valign="top"><img src=
+"/web/20011206100933im_/http://massinova.com:80/graphics/playingHdr.GIF"
+alt="" width="346" height="78"></td>
+</tr>
+<tr>
+<td align="right"><img src=
+"/web/20011206100933im_/http://massinova.com:80/graphics/spacer.GIF"
+align="right" width="5" height="31"></td>
+</tr>
+<tr>
+<td align="left"><img src=
+"/web/20011206100933im_/http://massinova.com:80/graphics/massinova.GIF"
+alt="" width="422" height="62"></td>
+</tr>
+<tr>
+<td></td>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td><a href="playing.html" onmouseover="highlight('0')" onmouseout=
+"reset()"><img name="button0" src=
+"/web/20011206100933im_/http://massinova.com:80/graphics/btnPlaying.GIF"
+alt="" width="66" height="17" border="0" vspace="5"></a></td>
+<td><a href="music.html" onmouseover="highlight('1')" onmouseout=
+"reset()"><img name="button1" src=
+"/web/20011206100933im_/http://massinova.com:80/graphics/btnMusic.GIF"
+alt="" width="63" height="17" border="0" vspace="5"></a></td>
+<td><a href="favorites.html" onmouseover="highlight('2')"
+onmouseout="reset()"><img name="button2" src=
+"/web/20011206100933im_/http://massinova.com:80/graphics/btnFavorites.GIF"
+alt="" width="82" height="17" border="0" vspace="5"></a></td>
+<td><a href="chart.html" onmouseover="highlight('3')" onmouseout=
+"reset()"><img name="button3" src=
+"/web/20011206100933im_/http://massinova.com:80/graphics/btnChart.GIF"
+alt="" width="49" height="17" border="0" vspace="5"></a></td>
+<td><a href="info.html" onmouseover="highlight('4')" onmouseout=
+"reset()"><img name="button4" src=
+"/web/20011206100933im_/http://massinova.com:80/graphics/btnInfo.GIF"
+alt="" width="43" height="17" border="0" vspace="5"></a></td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td align="center" colspan="2">
+<!-- Removed for the sake of harmony with the RIAA -->
+<!--
+                <FONT FACE="Tahoma,Helvetica,Arial,sans-serif" COLOR="#e78c00" SIZE=2>
+                upcoming songs:</FONT><BR>
+                
+                <TABLE WIDTH=100% BORDER=0 CELLSPACING=2 CELLPADDING=0>
+                        
+                                </TABLE>
+                <BR>
+                -->
+<table width="560" border="0" background=
+"/web/20011206100933im_/http://massinova.com:80/playing.html">
+<tr>
+<td><font class="heading">.: now playing</font><br>
+<font class="nowPlaying"><b><a href=
+"/web/20011206100933/http://massinova.com:80/song.html?id=261"
+class="nowPlaying">Full Moon</a></b><a href=
+"playing.html?id=261&amp;fav=add" onmouseover=
+"document.images['heart'].src = '/graphics/addfav.GIF'" onmouseout=
+"document.images['heart'].src = '/graphics/notfav.GIF'"><img name=
+"heart" src=
+"/web/20011206100933im_/http://massinova.com:80/graphics/notfav.GIF"
+alt="Add this song to your favorites..." width="18" height="14"
+border="0" hspace="5"></a><br>
+&nbsp;by&nbsp;<a href=
+"/web/20011206100933/http://massinova.com:80/music.html?lib=artist&amp;artist=Robert+Miles"
+class="nowPlaying">Robert&nbsp;Miles</a></font></td>
+</tr>
+</table>
+<table width="560" border="0" cellspacing="2" cellpadding="0">
+<tr>
+<td valign="top"><font class="heading">.: recently
+played</font><br>
+<a href=
+"/web/20011206100933/http://massinova.com:80/song.html?id=763"
+class="song"><font class="song">Blowout</font></a><font class=
+"artist">&nbsp;&nbsp;by&nbsp;<a href=
+"/web/20011206100933/http://massinova.com:80/music.html?lib=artist&amp;artist=The+Crystal+Method"
+class="artist">The&nbsp;Crystal&nbsp;Method</a></font><br>
+<a href=
+"/web/20011206100933/http://massinova.com:80/song.html?id=743"
+class="song"><font class="song">Why Does My Heart Feel So Bad
+(Ferry Corsten Mix)</font></a><font class=
+"artist">&nbsp;&nbsp;by&nbsp;<a href=
+"/web/20011206100933/http://massinova.com:80/music.html?lib=artist&amp;artist=Moby"
+class="artist">Moby</a></font><br>
+<a href=
+"/web/20011206100933/http://massinova.com:80/song.html?id=217"
+class="song"><font class="song">Ayla</font></a><font class=
+"artist">&nbsp;&nbsp;by&nbsp;<a href=
+"/web/20011206100933/http://massinova.com:80/music.html?lib=artist&amp;artist=Ayla"
+class="artist">Ayla</a></font><br>
+<a href=
+"/web/20011206100933/http://massinova.com:80/song.html?id=229"
+class="song"><font class="song">A Fine Day (ATB
+Remix)</font></a><font class="artist">&nbsp;&nbsp;by&nbsp;<a href=
+"/web/20011206100933/http://massinova.com:80/music.html?lib=artist&amp;artist=Miss+Jane"
+class="artist">Miss&nbsp;Jane</a></font><br>
+<a href=
+"/web/20011206100933/http://massinova.com:80/song.html?id=604"
+class="song"><font class="song">Samba De
+Janeiro</font></a><font class="artist">&nbsp;&nbsp;by&nbsp;<a href=
+"/web/20011206100933/http://massinova.com:80/music.html?lib=artist&amp;artist=Bellini"
+class="artist">Bellini</a></font><br>
+<a href=
+"/web/20011206100933/http://massinova.com:80/song.html?id=642"
+class="song"><font class="song">High Life (Live
+Version)</font></a><font class=
+"artist">&nbsp;&nbsp;by&nbsp;<a href="/web/20011206100933/http://massinova.com:80/music.html?lib=artist&amp;artist=Hybrid"
+class="artist">Hybrid</a></font><br>
+<a href=
+"/web/20011206100933/http://massinova.com:80/song.html?id=674"
+class="song"><font class="song">Sunburn (Timo Maas
+Remix)</font></a><font class="artist">&nbsp;&nbsp;by&nbsp;<a href=
+"/web/20011206100933/http://massinova.com:80/music.html?lib=artist&amp;artist=Muse"
+class="artist">Muse</a></font><br>
+<a href=
+"/web/20011206100933/http://massinova.com:80/song.html?id=619"
+class="song"><font class="song">Castles In The Sky (Peter Luts
+Remix)</font></a><font class="artist">&nbsp;&nbsp;by&nbsp;<a href=
+"/web/20011206100933/http://massinova.com:80/music.html?lib=artist&amp;artist=Ian+Van+Dahl"
+class="artist">Ian&nbsp;Van&nbsp;Dahl</a></font><br></td>
+<td valign="top"><font class="heading">.: requested songs
+<font class="headingSub">[<a href=
+"/web/20011206100933/http://massinova.com:80/requests.html" class=
+"headingSub">more</a>]</font></font><br>
+<table width="100%" border="0" cellspacing="2" cellpadding="0">
+<tr>
+<td align="right" valign="top" width="10%"><font class=
+"artist">1&nbsp;-&nbsp;</font></td>
+<td valign="top"><b><a href=
+"/web/20011206100933/http://massinova.com:80/song.html?id=261"
+class="song">Full Moon</a></b></td>
+</tr>
+<tr>
+<td align="right" valign="top" width="10%"><font class=
+"artist">2&nbsp;-&nbsp;</font></td>
+<td valign="top"><b><a href=
+"/web/20011206100933/http://massinova.com:80/song.html?id=285"
+class="song">1998 (Paul Van Dyk Remix)</a></b></td>
+</tr>
+<tr>
+<td align="right" valign="top" width="10%"><font class=
+"artist">3&nbsp;-&nbsp;</font></td>
+<td valign="top"><b><a href=
+"/web/20011206100933/http://massinova.com:80/song.html?id=238"
+class="song">Saltwater</a></b></td>
+</tr>
+<tr>
+<td align="right" valign="top" width="10%"><font class=
+"artist">1&nbsp;-&nbsp;</font></td>
+<td valign="top"><b><a href=
+"/web/20011206100933/http://massinova.com:80/song.html?id=483"
+class="song">Feel The Beat</a></b></td>
+</tr>
+<tr>
+<td align="right" valign="top" width="10%"><font class=
+"artist">3&nbsp;-&nbsp;</font></td>
+<td valign="top"><b><a href=
+"/web/20011206100933/http://massinova.com:80/song.html?id=602"
+class="song">You're Not Alone (Rollo and Sister Bliss
+Mix)</a></b></td>
+</tr>
+<tr>
+<td align="right" valign="top" width="10%"><font class=
+"artist">3&nbsp;-&nbsp;</font></td>
+<td valign="top"><b><a href=
+"/web/20011206100933/http://massinova.com:80/song.html?id=486"
+class="song">Clubbed To Death</a></b></td>
+</tr>
+<tr>
+<td align="right" valign="top" width="10%"><font class=
+"artist">1&nbsp;-&nbsp;</font></td>
+<td valign="top"><b><a href=
+"/web/20011206100933/http://massinova.com:80/song.html?id=771"
+class="song">Atom Bomb (Instrumental Mix)</a></b></td>
+</tr>
+</table>
+</td>
+<td width="120" valign="top" align="center"><a href=
+"listen.html"><img src=
+"/web/20011206100933im_/http://massinova.com:80/graphics/cListen.GIF"
+alt="Click here to listen!" width="95" height="75" border=
+"0"></a><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<!--
+     FILE ARCHIVED ON 10:09:33 Dec 06, 2001 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 08:38:44 Dec 12, 2018.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  LoadShardBlock: 81.334 (3)
+  esindex: 0.007
+  captures_list: 106.134
+  CDXLines.iter: 10.538 (3)
+  PetaboxLoader3.datanode: 90.767 (4)
+  exclusion.robots: 0.253
+  exclusion.robots.policy: 0.237
+  RedisCDXSource: 11.122
+  PetaboxLoader3.resolve: 170.186
+  load_resource: 199.662
+-->
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head>
+<meta name="generator" content=
+"HTML Tidy for Mac OS X (vers 31 October 2006 - Apple Inc. build 15.18.1), see www.w3.org">
+<title>Massinova.music()</title>
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Script-Type" content="text/JavaScript">
+<link rel="StyleSheet" type="text/css" href=
+"/web/20020726062931cs_/http://massinova.com:80/style.css">
+<link rel="StyleSheet" type="text/css" href=
+"/web/20020726062931cs_/http://massinova.com:80/form.css">
+<script type="text/javascript">
+        // Preload the buttons
+
+        sources = new Array("graphics/btnPlaying.GIF",
+                                                "graphics/btnMusic.GIF",
+                                                "graphics/btnFavorites.GIF",
+                                                "graphics/btnChart.GIF",
+                                                "graphics/btnInfo.GIF"
+                                                );
+
+        highlights = new Array("graphics/btnPlayingh.GIF",
+                                                        "graphics/btnMusich.GIF",
+                                                        "graphics/btnFavoritesh.GIF",
+                                                        "graphics/btnCharth.GIF",
+                                                        "graphics/btnInfoh.GIF"
+                                                        );
+
+        load(5);
+
+        function load (number) {
+                button = new Array(number);
+                for (i = 0; i < number; i++) {
+                        button[i] = new Array(2);
+                        button[i][0] = new Image();
+                        button[i][0].src = sources[i];
+                        button[i][1] = new Image();
+                        button[i][1].src = highlights[i];
+                }
+        }
+
+        function highlight (index) {
+                document.images['button'+index].src = button[index][1].src;
+        }
+
+        function reset () {
+                for (i = 0; i < button.length; i++) {
+                        if (document.images['button'+i]) {
+                                document.images['button' + i].src = button[i][0].src;
+                        }
+                }
+        }
+
+        function search (inLib) {
+                document.forms[0].lib.value = inLib;
+                document.forms[0].submit();
+        }
+
+</script>
+</head>
+<body background=
+"/web/20020726062931im_/http://massinova.com:80/graphics/background.GIF"
+bgcolor="#3B4559" text="#FFFFFF" link="#FFB41E" vlink="#E78C00"
+alink="#202433" marginheight="0" marginwidth="0" topmargin="0"
+leftmargin="0">
+<table border="0" cellpadding="0" cellspacing="0" width="580">
+<tr>
+<td colspan="2"><img src=
+"/web/20020726062931im_/http://massinova.com:80/graphics/spacer.GIF"
+width="5" height="10"></td>
+</tr>
+<tr>
+<td rowspan="2"><img src=
+"/web/20020726062931im_/http://massinova.com:80/graphics/spacer.GIF"
+width="5" height="67"><br>
+<img src=
+"/web/20020726062931im_/http://massinova.com:80/graphics/logo.GIF"
+alt="" width="158" height="104"></td>
+<td align="right" valign="top"><img src=
+"/web/20020726062931im_/http://massinova.com:80/graphics/musicHdr.GIF"
+alt="" width="254" height="78"></td>
+</tr>
+<tr>
+<td align="left"><spacer type="block" height="31"><br>
+<img src=
+"/web/20020726062931im_/http://massinova.com:80/graphics/massinova.GIF"
+alt="" width="422" height="62"></td>
+</tr>
+<tr>
+<td></td>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td><a href="playing.html" onmouseover="highlight('0')" onmouseout=
+"reset()"><img name="button0" src=
+"/web/20020726062931im_/http://massinova.com:80/graphics/btnPlaying.GIF"
+alt="" width="66" height="17" border="0" vspace="5"></a></td>
+<td><a href="music.html" onmouseover="highlight('1')" onmouseout=
+"reset()"><img name="button1" src=
+"/web/20020726062931im_/http://massinova.com:80/graphics/btnMusic.GIF"
+alt="" width="63" height="17" border="0" vspace="5"></a></td>
+<td><a href="favorites.html" onmouseover="highlight('2')"
+onmouseout="reset()"><img name="button2" src=
+"/web/20020726062931im_/http://massinova.com:80/graphics/btnFavorites.GIF"
+alt="" width="82" height="17" border="0" vspace="5"></a></td>
+<td><a href="chart.html" onmouseover="highlight('3')" onmouseout=
+"reset()"><img name="button3" src=
+"/web/20020726062931im_/http://massinova.com:80/graphics/btnChart.GIF"
+alt="" width="49" height="17" border="0" vspace="5"></a></td>
+<td><a href="info.html" onmouseover="highlight('4')" onmouseout=
+"reset()"><img name="button4" src=
+"/web/20020726062931im_/http://massinova.com:80/graphics/btnInfo.GIF"
+alt="" width="43" height="17" border="0" vspace="5"></a></td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td align="center" colspan="2">
+<table width="500" height="200" border="0">
+<tr>
+<td width="580" colspan="2" align="right">
+<table border="0" cellpadding="0" cellspacing="2">
+<tr>
+<td>
+<form action="music.html" method="post"><input type="hidden" name=
+"lib" value="song"><input type="text" name="query" value="" size=
+"20"></form>
+</td>
+<td><map name="selectorMap">
+<area shape="rect" coords="0,0,20,23" href=
+"javascript:search('artist');">
+<area shape="rect" coords="21,0,43,23" href=
+"javascript:search('album');">
+<area shape="rect" coords="44,0,63,23" href=
+"javascript:search('song');"></map> <img name="selector" src=
+"/web/20020726062931im_/http://massinova.com:80/graphics/selector.GIF"
+alt=
+"Enter keywords and click to search for artists, albums or songs"
+width="63" height="23" border="0" usemap="#selectorMap"></td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td width="460" valign="top">
+<table width="100%" border="0" cellspacing="2" cellpadding="0">
+<tr>
+<td width="120" valign="top"><img src=
+"/web/20020726062931im_/http://massinova.com:80/graphics/keiko.GIF"
+alt="Keiko" width="104" height="148" align="left"></td>
+<td><font class="location"><b>Athina 2004</b></font><br>
+<font class="data">by&nbsp;<a href=
+"music.html?lib=artist&amp;artist=303+Infinity" class=
+"artists">303&nbsp;Infinity</a></font>
+<p class="data" align="justify">We can't seem to to remember who
+you are! You might have your cookies turned off or your browser is
+having problems with our cookies.</p>
+<!--  --><a href="javascript:history.go(-1)"><img src=
+"/web/20020726062931im_/http://massinova.com:80/graphics/requesting.gif"
+alt="Click here to continue requesting..." width="149" height="25"
+align="right" border="0"></a></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<!--
+     FILE ARCHIVED ON 06:29:31 Jul 26, 2002 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 08:50:45 Dec 12, 2018.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  LoadShardBlock: 139.987 (3)
+  esindex: 0.006
+  captures_list: 155.987
+  CDXLines.iter: 11.881 (3)
+  PetaboxLoader3.datanode: 207.246 (4)
+  exclusion.robots: 0.148
+  exclusion.robots.policy: 0.138
+  RedisCDXSource: 1.625
+  PetaboxLoader3.resolve: 152.282
+  load_resource: 238.284
+-->
+</body>
+</html>
