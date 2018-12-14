@@ -1,0 +1,23 @@
+{
+  "name": "massinova",
+  "version": "1.0.0",
+  "description": "mine the internet archive's captures of the massinova.com domain to list all the music they had in their collection",
+  "author": "rezmason",
+  "license": "MIT",
+  "scripts": {
+    "start": "npm run format && node src/main.js",
+    "format": "npm run format_eslint ; npm run format_prettier",
+    "format_prettier": "prettier --write 'src/**/*.js'",
+    "format_eslint": "eslint 'src/**/*.js'"
+  },
+  "dependencies": {
+    "he": "^1.2.0",
+    "htmlparser": "^1.7.7"
+  },
+  "devDependencies": {
+    "eslint": "^5.10.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "prettier": "^1.15.3"
+  }
+}
