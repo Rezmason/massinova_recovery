@@ -1,0 +1,39 @@
+TODO.txt
+
+Mining
+  Build a miner for each set in each mine
+    Miner takes both the file name and content as input
+  Manually verify each miner's results
+
+Database
+  Decide on the columns
+    [Database UID]
+
+    Array of errors
+
+    Date of archiving
+    Song ID
+    Song name
+    Track ID
+    Track name
+    Duration
+    BPM
+    Song's index in album (probably not)
+    Date added
+    Artists
+    Artist has a biography
+    Artist biography
+    Artist website
+    Albums
+    Plays
+    Last Played
+    Ratings
+    Chart ranking
+    From (storefront? record label?)
+    etc
+
+Try to compile songs and tracks
+  Timelines
+Try to merge songs and tracks
+Try to compile albums
+Try to compile artists

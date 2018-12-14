@@ -1,0 +1,1 @@
+http://web.archive.org/cdx/search/cdx?url=massinova.com&output=json&fl=original,timestamp,mimetype,statuscode&matchType=domain

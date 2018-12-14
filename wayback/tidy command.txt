@@ -1,0 +1,1 @@
+ find . -name '*.html' -type f -print -exec tidy --show-warnings false -mq '{}' \;
