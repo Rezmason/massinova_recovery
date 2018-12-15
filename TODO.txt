@@ -19,7 +19,8 @@ Database
     Song's index in album (probably not)
     Date song added
     Date added
-    Artists
+    Artist
+    Credits
     Artist website URL
     Artist biography: total pages
     Artist biography: this page

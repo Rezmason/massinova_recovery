@@ -4,6 +4,7 @@ const DOMUtils = require("./DOMUtils.js");
 const processChart = require("./processChart.js");
 const processAlbum = require("./processAlbum.js");
 const processAlbumIndex = require("./processAlbumIndex.js");
+const processArtist = require("./processArtist.js");
 const processArtistIndex = require("./processArtistIndex.js");
 const processDownURL = require("./processDownURL.js");
 
@@ -200,6 +201,87 @@ module.exports = {
       const albumID = parseFloat(filenameData.album);
 
       return processAlbum(dom, timestamp, albumID);
+    });
+    return extractedSourceData;
+  },
+
+  "data music html artist v1": files => {
+    const extractedSourceData = files.map(({ path, dom }) => {
+      const filenameData = mineUtils.extractFilenameData(path);
+      const timestamp = filenameData.timestamp;
+      return processArtist(dom, timestamp);
+    });
+    return extractedSourceData;
+  },
+
+  "data music html artist_ v1": files => {
+    const extractedSourceData = files.map(({ path, dom }) => {
+      const filenameData = mineUtils.extractFilenameData(path);
+      const timestamp = filenameData.timestamp;
+      return processArtist(dom, timestamp);
+    });
+    return extractedSourceData;
+  },
+
+  "data music html artists_": files => {
+    const extractedSourceData = files.map(({ path, dom }) => {
+      const filenameData = mineUtils.extractFilenameData(path);
+      const timestamp = filenameData.timestamp;
+      return processArtist(dom, timestamp);
+    });
+    return extractedSourceData;
+  },
+
+  "data music html lib artist artist v1": files => {
+    const extractedSourceData = files.map(({ path, dom }) => {
+      const filenameData = mineUtils.extractFilenameData(path);
+      const timestamp = filenameData.timestamp;
+      return processArtist(dom, timestamp);
+    });
+    return extractedSourceData;
+  },
+
+  "data music html track_ pages": files => {
+    const extractedSourceData = files.map(({ path, dom }) => {
+      const filenameData = mineUtils.extractFilenameData(path);
+      const timestamp = filenameData.timestamp;
+      return processArtist(dom, timestamp);
+    });
+    return extractedSourceData;
+  },
+
+  "data playing v1": files => {
+    const extractedSourceData = files.map(({ path, dom }) => {
+      const filenameData = mineUtils.extractFilenameData(path);
+      const timestamp = filenameData.timestamp;
+      return processArtist(dom, timestamp);
+    });
+    return extractedSourceData;
+  },
+
+  "data playing v2": files => {
+    const extractedSourceData = files.map(({ path, dom }) => {
+      const filenameData = mineUtils.extractFilenameData(path);
+      const timestamp = filenameData.timestamp;
+      return processArtist(dom, timestamp);
+    });
+    return extractedSourceData;
+  },
+
+  "data requests v1": files => {
+    const extractedSourceData = files.map(({ path, dom }) => {
+      const filenameData = mineUtils.extractFilenameData(path);
+      const timestamp = filenameData.timestamp;
+      return processArtist(dom, timestamp);
+    });
+    return extractedSourceData;
+  },
+
+  "data requests v2": files => {
+    const extractedSourceData = files.map(({ path, dom }) => {
+      const filenameData = mineUtils.extractFilenameData(path);
+      const timestamp = filenameData.timestamp;
+      return processArtist(dom, timestamp);
     });
     return extractedSourceData;
   }
