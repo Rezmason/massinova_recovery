@@ -17,7 +17,6 @@ Database
     Duration
     BPM
     Song's index in album (probably not)
-    Date song added
     Date added
     Artist
     Credits

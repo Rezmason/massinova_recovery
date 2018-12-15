@@ -11,6 +11,13 @@ module.exports = (dom, timestamp, albumID) => {
         null
   ).data;
 
+  const albumCDNowATag = allElements.find(
+    element => element.name === "a" && element.attribs.href.includes("cdnow")
+  );
+  const albumCDNowURL = albumCDNowATag
+    ? albumCDNowATag.attribs.href.split("http://").pop()
+    : null;
+
   const recordLabel = allElements.find(
     element =>
       element.type === "text" &&
@@ -58,6 +65,7 @@ module.exports = (dom, timestamp, albumID) => {
       }
     });
     if (recordLabelName != null) result.recordLabelName = recordLabelName;
+    if (albumCDNowURL != null) result.albumCDNowURL = albumCDNowURL;
     return result;
   });
 
