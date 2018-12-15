@@ -1,13 +1,11 @@
 const DOMUtils = require("./DOMUtils.js");
 const mineUtils = require("./mineUtils.js");
 
-module.exports = (dom, timestamp) =>
-  DOMUtils.flattenDOM(dom)
+module.exports = (dom, timestamp) => {
+  const isArtistTag = DOMUtils.quickMatch("a", "artist");
+  return DOMUtils.flattenDOM(dom)
     .filter(
-      element =>
-        element.type === "text" &&
-        element.parentNode.name === "a" &&
-        element.parentNode.attribs.class === "artist"
+      element => element.type === "text" && isArtistTag(element.parentNode)
     )
     .map(element => {
       const aTag = element.parentNode;
@@ -20,3 +18,4 @@ module.exports = (dom, timestamp) =>
         timestamp
       };
     });
+};

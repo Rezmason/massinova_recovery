@@ -23,4 +23,8 @@ const climbDOM = (dom, find) => {
   return element;
 };
 
-module.exports = { linkDOMParents, flattenDOM, climbDOM };
+const quickMatch = (tagName, className = null) => element =>
+  element.name === tagName &&
+  (className == null || element.attribs.class === className);
+
+module.exports = { linkDOMParents, flattenDOM, climbDOM, quickMatch };

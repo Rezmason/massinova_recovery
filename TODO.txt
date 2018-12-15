@@ -1,17 +1,15 @@
-TODO.txt
-
 Mining
   Build a miner for each set in each mine
     Miner takes both the file name and content as input
   Manually verify each miner's results
+    Make sure popularity is extracted wherever it's listed
 
 Database
   Decide on the columns
-    [Database UID]
+    Archive timestamp
 
-    Array of errors
+    Error Array
 
-    Date of archiving
     Song ID
     Song name
     Track ID
@@ -19,13 +17,16 @@ Database
     Duration
     BPM
     Song's index in album (probably not)
+    Date song added
     Date added
     Artists
-    Artist has a biography
-    Artist biography
-    Artist website
+    Artist website URL
+    Artist biography: total pages
+    Artist biography: this page
+    Artist biography: text
     Albums
     Plays
+    Requests
     Last Played
     Ratings
     Chart ranking
@@ -37,3 +38,13 @@ Try to compile songs and tracks
 Try to merge songs and tracks
 Try to compile albums
 Try to compile artists
+
+
+Popularity labels
+    (•) below average
+    (••) average
+    (•••) above average
+    (••••) extraordinary
+    (•••••) very popular
+    (••••••) unbelievable
+    (•••••••) unrivaled

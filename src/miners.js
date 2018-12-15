@@ -2,6 +2,7 @@ const mineUtils = require("./mineUtils.js");
 const DOMUtils = require("./DOMUtils.js");
 
 const processChart = require("./processChart.js");
+const processAlbum = require("./processAlbum.js");
 const processAlbumIndex = require("./processAlbumIndex.js");
 const processArtistIndex = require("./processArtistIndex.js");
 const processDownURL = require("./processDownURL.js");
@@ -156,9 +157,7 @@ module.exports = {
             element.type === "text" &&
             DOMUtils.climbDOM(
               element,
-              parent =>
-                parent.attribs != null &&
-                parent.attribs.class === "artist-title"
+              DOMUtils.quickMatch("font", "artist-title")
             ) != null
         )
         .map(element => ({
@@ -190,6 +189,17 @@ module.exports = {
       const filenameData = mineUtils.extractFilenameData(path);
       const timestamp = filenameData.timestamp;
       return processArtistIndex(dom, timestamp);
+    });
+    return extractedSourceData;
+  },
+
+  "data music html album_ v1": files => {
+    const extractedSourceData = files.map(({ path, dom }) => {
+      const filenameData = mineUtils.extractFilenameData(path);
+      const timestamp = filenameData.timestamp;
+      const albumID = parseFloat(filenameData.album);
+
+      return processAlbum(dom, timestamp, albumID);
     });
     return extractedSourceData;
   }

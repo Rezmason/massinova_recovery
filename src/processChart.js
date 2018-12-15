@@ -8,7 +8,7 @@ module.exports = (dom, timestamp, chartType) => {
     )
     .map(element => {
       const result = { data: element.data };
-      const aTag = DOMUtils.climbDOM(element, parent => parent.name === "a");
+      const aTag = DOMUtils.climbDOM(element, DOMUtils.quickMatch("a"));
       if (aTag) {
         let url = mineUtils.decodeEntities(aTag.attribs.href);
         if (url.indexOf("http") !== 0 && url.indexOf("/web") !== 0) {
@@ -19,10 +19,7 @@ module.exports = (dom, timestamp, chartType) => {
           mineUtils.extractURLData(url)
         ];
       } else {
-        const fontTag = DOMUtils.climbDOM(
-          element,
-          parent => parent.name === "font"
-        );
+        const fontTag = DOMUtils.climbDOM(element, DOMUtils.quickMatch("font"));
         if (fontTag) {
           result.class = fontTag.attribs.class;
         }
@@ -37,7 +34,7 @@ module.exports = (dom, timestamp, chartType) => {
   );
 
   const records = clumps.map(clump => {
-    const record = { timestamp, chartData: { chartType, timestamp } };
+    const record = { timestamp, chartType };
     clump.forEach(piece => {
       if (piece.urlData != null) {
         if (piece.urlData.id != null) {
@@ -50,7 +47,7 @@ module.exports = (dom, timestamp, chartType) => {
           record.artistName = piece.urlData.artist;
         }
       } else if (rankClasses.includes(piece.class)) {
-        record.chartData.rank = parseFloat(piece.data);
+        record.chartRank = parseFloat(piece.data);
       }
     });
     return record;

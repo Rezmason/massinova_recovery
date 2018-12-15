@@ -60,4 +60,9 @@ const clump = (data, startPredicate) => {
 
 const decodeEntities = he.decode;
 
-module.exports = { extractFilenameData, extractURLData, clump, decodeEntities };
+module.exports = {
+  extractFilenameData,
+  extractURLData,
+  clump,
+  decodeEntities
+};

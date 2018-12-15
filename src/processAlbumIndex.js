@@ -2,13 +2,13 @@ const DOMUtils = require("./DOMUtils.js");
 const mineUtils = require("./mineUtils.js");
 
 module.exports = (dom, timestamp) => {
+  const isCoverTag = DOMUtils.quickMatch("a", "cover");
   return DOMUtils.flattenDOM(dom)
     .filter(
       element =>
         element.type === "tag" &&
         element.name === "img" &&
-        element.parentNode.name === "a" &&
-        element.parentNode.attribs.class === "cover"
+        isCoverTag(element.parentNode)
     )
     .map(element => {
       const aTag = element.parentNode;
