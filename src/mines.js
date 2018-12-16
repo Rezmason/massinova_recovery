@@ -42,12 +42,12 @@ const getMineSources = folderPath => {
   );
 };
 
-const buildMineSources = (dataPath, jsonPath) => {
-  if (!fs.existsSync(jsonPath)) {
+const buildMineSources = (dataPath, dataJsonPath) => {
+  if (!fs.existsSync(dataJsonPath)) {
     console.log("Creating data JSON...");
     console.time("createDataJSON");
     fs.writeFileSync(
-      jsonPath,
+      dataJsonPath,
       JSON.stringify(
         getMineSources(dataPath).filter(
           mineSource => mineSource.files.length > 0
@@ -61,7 +61,7 @@ const buildMineSources = (dataPath, jsonPath) => {
 
   console.log("Loading data JSON...");
   console.time("loadDataJSON");
-  const mineSources = JSON.parse(fs.readFileSync(jsonPath));
+  const mineSources = JSON.parse(fs.readFileSync(dataJsonPath));
   console.timeEnd("loadDataJSON");
   return mineSources;
 };
