@@ -39,15 +39,15 @@ module.exports = (dom, timestamp, chartType) => {
       if (piece.urlData != null) {
         if (piece.urlData.id != null) {
           record.songID = parseFloat(piece.urlData.id);
-          record.songName = piece.data;
+          record.songName = mineUtils.decodeEntities(piece.data);
         } else if (piece.urlData.track != null) {
           record.songID = parseFloat(piece.urlData.track);
-          record.songName = piece.data;
+          record.songName = mineUtils.decodeEntities(piece.data);
         } else if (piece.urlData.artist != null) {
           record.artistName = piece.urlData.artist;
         }
       } else if (rankClasses.includes(piece.class)) {
-        record.chartRank = parseFloat(piece.data);
+        record.chartRank = parseFloat(mineUtils.decodeEntities(piece.data));
       }
     });
     return record;

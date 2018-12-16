@@ -4,12 +4,16 @@ const mineUtils = require("./mineUtils.js");
 module.exports = (dom, timestamp, albumID) => {
   const allElements = DOMUtils.flattenDOM(dom);
 
-  const albumName = allElements.find(
-    element =>
-      element.type === "text" &&
-      DOMUtils.climbDOM(element, DOMUtils.quickMatch("font", "album-title")) !=
-        null
-  ).data;
+  const albumName = mineUtils.decodeEntities(
+    allElements.find(
+      element =>
+        element.type === "text" &&
+        DOMUtils.climbDOM(
+          element,
+          DOMUtils.quickMatch("font", "album-title")
+        ) != null
+    ).data
+  );
 
   const albumCDNowATag = allElements.find(
     element => element.name === "a" && element.attribs.href.includes("cdnow")
