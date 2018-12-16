@@ -1,44 +1,4 @@
-Mining
-  Build a miner for each set in each mine
-    Miner takes both the file name and content as input
-  Manually verify each miner's results
-    Make sure popularity is extracted wherever it's listed
-
-Database
-  Decide on the columns
-    Archive timestamp
-
-    Error Array
-
-    Song ID
-    Song name
-    Track ID
-    Track name
-    Duration
-    BPM
-    Song's index in album (probably not)
-    Date added
-    Artist
-    Credits
-    Artist website URL
-    Artist biography: total pages
-    Artist biography: this page
-    Artist biography: text
-    Albums
-    Plays
-    Requests
-    Last Played
-    Ratings
-    Chart ranking
-    From (storefront? record label?)
-    etc
-
-Try to compile songs and tracks
-  Timelines
-Try to merge songs and tracks
-Try to compile albums
-Try to compile artists
-
+Merge the data together
 
 Popularity labels
     (•) below average

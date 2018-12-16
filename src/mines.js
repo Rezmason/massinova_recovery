@@ -45,7 +45,7 @@ const getMineSources = folderPath => {
 const buildMineSources = (dataPath, jsonPath) => {
   if (!fs.existsSync(jsonPath)) {
     console.log("Creating data JSON...");
-    console.time("createJSON");
+    console.time("createDataJSON");
     fs.writeFileSync(
       jsonPath,
       JSON.stringify(
@@ -56,13 +56,13 @@ const buildMineSources = (dataPath, jsonPath) => {
         " "
       )
     );
-    console.timeEnd("createJSON");
+    console.timeEnd("createDataJSON");
   }
 
   console.log("Loading data JSON...");
-  console.time("loadJSON");
+  console.time("loadDataJSON");
   const mineSources = JSON.parse(fs.readFileSync(jsonPath));
-  console.timeEnd("loadJSON");
+  console.timeEnd("loadDataJSON");
   return mineSources;
 };
 

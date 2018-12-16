@@ -1,10 +1,10 @@
 const mines = require("./mines.js");
 const DOMUtils = require("./DOMUtils.js");
+const smoosh = require("./smoosh.js");
+const fs = require("fs");
 
-const unfinishedMiners = require("./unfinishedMiners.js");
-const finishedMiners = require("./miners.js");
+const miners = require("./miners.js");
 
-const miners = { ...unfinishedMiners, ...finishedMiners };
 const mineSources = mines.buildMineSources(`./data`, `./data.json`);
 const justOne = false;
 
@@ -14,8 +14,23 @@ mineSources.forEach(mineSource =>
   mineSource.files.forEach(file => DOMUtils.linkDOMParents(file.dom))
 );
 console.timeEnd("linkDOMParents");
-const mineOutput = mineSources.map(mineSource =>
-  miners[mineSource.mineID](justOne ? [mineSource.files[0]] : mineSource.files)
-);
 
-mineOutput;
+console.log("Mining...");
+console.time("mining");
+const mineOutput = smoosh(
+  mineSources.map(mineSource => {
+    // console.time(mineSource.mineID);
+    const data = miners[mineSource.mineID](
+      justOne ? [mineSource.files[0]] : mineSource.files
+    );
+    // console.timeEnd(mineSource.mineID);
+    return data;
+  })
+);
+console.timeEnd("mining");
+
+const scrapedJsonPath = `./scraped.json`;
+console.log("Creating scraped JSON...");
+console.time("createScrapedJSON");
+fs.writeFileSync(scrapedJsonPath, JSON.stringify(mineOutput, null, " "));
+console.timeEnd("createScrapedJSON");
