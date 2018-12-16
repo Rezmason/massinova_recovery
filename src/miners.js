@@ -7,6 +7,7 @@ const processAlbumIndex = require("./processAlbumIndex.js");
 const processArtist = require("./processArtist.js");
 const processArtistIndex = require("./processArtistIndex.js");
 const processDownURL = require("./processDownURL.js");
+const processSong = require("./processSong.js");
 
 module.exports = {
   "data chart": files => {
@@ -283,6 +284,30 @@ module.exports = {
       const timestamp = filenameData.timestamp;
       return processArtist(dom, timestamp);
     });
+    return extractedSourceData;
+  },
+
+  "data music html track_ v2": files => {
+    const extractedSourceData = files
+      .map(({ path, dom }) => {
+        const filenameData = mineUtils.extractFilenameData(path);
+        const timestamp = filenameData.timestamp;
+        const songID = parseFloat(filenameData.track);
+        return processSong(dom, timestamp, songID);
+      })
+      .filter(song => song.empty == null);
+    return extractedSourceData;
+  },
+
+  "data song html id v1": files => {
+    const extractedSourceData = files
+      .map(({ path, dom }) => {
+        const filenameData = mineUtils.extractFilenameData(path);
+        const timestamp = filenameData.timestamp;
+        const songID = parseFloat(filenameData.id);
+        return processSong(dom, timestamp, songID);
+      })
+      .filter(song => song.empty == null);
     return extractedSourceData;
   }
 };
