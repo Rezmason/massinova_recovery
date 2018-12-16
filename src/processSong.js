@@ -110,7 +110,7 @@ module.exports = (dom, timestamp, songID) => {
   );
   if (artistNames.length > 0) {
     if (artistNames.length === 1) {
-      result.artist = artistNames[0].text;
+      result.artistName = artistNames[0].text;
     } else {
       result.credits = {};
       let credit = null;
@@ -140,9 +140,9 @@ module.exports = (dom, timestamp, songID) => {
       });
 
       if (result.credits.by != null) {
-        result.artist = result.credits.by;
+        result.artistName = result.credits.by;
       } else if (result.credits.original != null) {
-        result.artist = result.credits.original;
+        result.artistName = result.credits.original;
       }
     }
   }

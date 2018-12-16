@@ -73,9 +73,9 @@ module.exports = (dom, timestamp, songID) => {
     });
 
     if (credits.by != null) {
-      result.artist = credits.by;
+      result.artistName = credits.by;
     } else if (credits.original != null) {
-      result.artist = credits.original;
+      result.artistName = credits.original;
     }
 
     if (Object.keys(credits).length > 0) {
