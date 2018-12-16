@@ -1,5 +1,7 @@
 const mineUtils = require("./mineUtils.js");
 
+const bioAtEnd = / bio$/;
+
 module.exports = path => {
   const filenameData = mineUtils.extractFilenameData(path);
   const timestamp = filenameData.timestamp;
@@ -7,7 +9,7 @@ module.exports = path => {
     timestamp
   };
   if (filenameData.artist != null) {
-    result.artistName = filenameData.artist;
+    result.artistName = filenameData.artist.replace(bioAtEnd, "");
   }
   if (filenameData.song != null) {
     result.songID = parseFloat(filenameData.song);
