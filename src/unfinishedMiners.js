@@ -6,14 +6,5 @@ module.exports = {
       return [];
     });
     return extractedSourceData;
-  },
-
-  "data request html song v1": files => {
-    console.log("TODO: data request html song v1", files.length);
-    console.warn("\t", "SONG");
-    const extractedSourceData = files.map(({ path, dom }) => {
-      return [];
-    });
-    return extractedSourceData;
   }
 };

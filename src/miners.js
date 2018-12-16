@@ -8,6 +8,7 @@ const processArtist = require("./processArtist.js");
 const processArtistIndex = require("./processArtistIndex.js");
 const processDownURL = require("./processDownURL.js");
 const processSong = require("./processSong.js");
+const processRequest = require("./processRequest.js");
 
 module.exports = {
   "data chart": files => {
@@ -306,6 +307,18 @@ module.exports = {
         const timestamp = filenameData.timestamp;
         const songID = parseFloat(filenameData.id);
         return processSong(dom, timestamp, songID);
+      })
+      .filter(song => song.empty == null);
+    return extractedSourceData;
+  },
+
+  "data request html song v1": files => {
+    const extractedSourceData = files
+      .map(({ path, dom }) => {
+        const filenameData = mineUtils.extractFilenameData(path);
+        const timestamp = filenameData.timestamp;
+        const songID = parseFloat(filenameData.song);
+        return processRequest(dom, timestamp, songID);
       })
       .filter(song => song.empty == null);
     return extractedSourceData;
