@@ -1,0 +1,31 @@
+SONG
+  search: songID
+  properties:
+    songName
+    bpm
+    chartRank
+    chartType
+    credits
+    dateAdded
+    duration
+    genres
+    lastPlayed
+    numRequests
+    plays
+    popularity
+    requests
+ARTIST
+  search: artistName
+  properties:
+    artistInfo
+    artistWebsite
+    bioPage1
+    bioPage2
+    bioPage3
+    bioWriter
+ALBUM
+  search: albumID
+  properties:
+    albumID
+    albumCDNowURL
+    recordLabelName

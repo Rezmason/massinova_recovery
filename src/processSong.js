@@ -16,6 +16,17 @@ module.exports = (dom, timestamp, songID) => {
   const allElements = DOMUtils.flattenDOM(dom);
   const result = {};
 
+  const albumArt = allElements
+    .filter(
+      element =>
+        element.name === "img" && element.attribs.src.includes("/albums/")
+    )
+    .map(element => element.attribs.src.split("/albums/").pop());
+
+  if (albumArt.length > 0) {
+    result.albumID = parseFloat(numeric.exec(albumArt[0])[0]);
+  }
+
   let popularCount = allElements.filter(
     element => element.name === "img" && element.attribs.alt === "Popular Song!"
   ).length;
@@ -52,7 +63,11 @@ module.exports = (dom, timestamp, songID) => {
               artistElements.push({ type: "artist", text: urlData.artist });
             }
             if (urlData.album != null) {
-              result.albumID = parseFloat(urlData.album);
+              const albumID = parseFloat(urlData.album);
+              if (result.albumID != null && result.albumID !== albumID) {
+                throw new Error(`album ID mismatch: ${timestamp}`);
+              }
+              result.albumID = albumID;
             }
           }
         }
