@@ -17,7 +17,9 @@ SONG
 ARTIST
   search: artistName
   properties:
-    artistInfo
+    artistInfo_from
+    artistInfo_started
+    artistInfo_born
     artistWebsite
     bioPage1
     bioPage2
@@ -26,6 +28,6 @@ ARTIST
 ALBUM
   search: albumID
   properties:
-    albumID
+    albumName
     albumCDNowURL
     recordLabelName

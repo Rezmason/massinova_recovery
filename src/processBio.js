@@ -43,7 +43,6 @@ module.exports = (dom, timestamp, artistName, bioPage) => {
   };
 
   if (bioData != null) {
-    result.artistInfo = {};
     bioData.forEach(line => {
       if (line.length === 1) {
         if (result.bioWriter != null) {
@@ -51,7 +50,7 @@ module.exports = (dom, timestamp, artistName, bioPage) => {
         }
         result.bioWriter = line[0];
       } else {
-        result.artistInfo[line[0].toLowerCase().trim()] = line[1];
+        result[`artistInfo_${line[0].toLowerCase().trim()}`] = line[1];
       }
     });
   }
