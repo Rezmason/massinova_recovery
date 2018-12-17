@@ -1,16 +1,4 @@
-Merge the data together
-
-  Make a lookup method for songs, artists and albums that accepts a record and never fails
-
-  statics
-    song
-    artist
-    album
-  histories
-    plays
-    requests
-    chart performance
-  artist bios
+Tie songs to albums and artists
 
 Popularity labels
     (•) below average
