@@ -42,10 +42,7 @@ module.exports = (dom, timestamp, songID) => {
 
       const durationData = durationPattern.exec(text);
       if (durationData != null) {
-        result.duration = {
-          minutes: durationData[1],
-          seconds: durationData[2]
-        };
+        result.duration = `${durationData[1]}:${durationData[2]}`;
       } else if (aTag != null) {
         if (aTag.attribs.class === "album" || aTag.attribs.target === "album") {
           result.albumName = text;
