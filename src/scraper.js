@@ -4,7 +4,12 @@ const DOMUtils = require("./DOMUtils.js");
 const smoosh = require("./smoosh.js");
 const miners = require("./miners.js");
 
-const buildScrapedData = (dataPath, dataJsonPath, scrapedJsonPath) => {
+const buildScrapedData = (
+  dataPath,
+  dataJsonPath,
+  scrapedJsonPath,
+  overrideJsonPath
+) => {
   if (!fs.existsSync(scrapedJsonPath)) {
     const mineSources = mines.buildMineSources(dataPath, dataJsonPath);
 
@@ -26,6 +31,33 @@ const buildScrapedData = (dataPath, dataJsonPath, scrapedJsonPath) => {
       })
     );
     console.timeEnd("mining");
+
+    console.log("Loading override JSON...");
+    console.time("loadOverrideJSON");
+    const overrideJSON = JSON.parse(fs.readFileSync(overrideJsonPath));
+    console.timeEnd("loadOverrideJSON");
+
+    console.log("Mending...");
+    console.time("mending");
+    const songs = mineOutput.filter(
+      datum => datum.songID != null || datum.songName != null
+    );
+    const songOverrides = overrideJSON.songName_songID;
+    songs.forEach(song => {
+      if (songOverrides[song.songName] != null)
+        song.songID = songOverrides[song.songName];
+    });
+
+    // const artists = mineOutput.filter(datum => datum.artistName != null);
+    const albums = mineOutput.filter(
+      datum => datum.albumID != null || datum.albumName != null
+    );
+    const albumOverrides = overrideJSON.albumName_albumID;
+    albums.forEach(album => {
+      if (albumOverrides[album.albumName] != null)
+        album.albumID = albumOverrides[album.albumName];
+    });
+    console.timeEnd("mending");
 
     console.log("Creating scraped JSON...");
     console.time("createScrapedJSON");
