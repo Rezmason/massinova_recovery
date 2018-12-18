@@ -34,29 +34,29 @@ const buildScrapedData = (
 
     console.log("Loading override JSON...");
     console.time("loadOverrideJSON");
-    const overrideJSON = JSON.parse(fs.readFileSync(overrideJsonPath));
+    const overrides = JSON.parse(fs.readFileSync(overrideJsonPath));
     console.timeEnd("loadOverrideJSON");
 
     console.log("Mending...");
     console.time("mending");
-    const songs = mineOutput.filter(
-      datum => datum.songID != null || datum.songName != null
-    );
-    const songOverrides = overrideJSON.songName_songID;
-    songs.forEach(song => {
-      if (songOverrides[song.songName] != null)
-        song.songID = songOverrides[song.songName];
-    });
+
+    const applyOverrides = datum =>
+      overrides
+        .filter(override =>
+          Object.keys(override.match).every(
+            key => override.match[key] === datum[key]
+          )
+        )
+        .map(override => Object.assign(datum, override.assign));
+
+    const songs = mineOutput
+      .filter(datum => datum.songID != null || datum.songName != null)
+      .map(applyOverrides);
 
     // const artists = mineOutput.filter(datum => datum.artistName != null);
-    const albums = mineOutput.filter(
-      datum => datum.albumID != null || datum.albumName != null
-    );
-    const albumOverrides = overrideJSON.albumName_albumID;
-    albums.forEach(album => {
-      if (albumOverrides[album.albumName] != null)
-        album.albumID = albumOverrides[album.albumName];
-    });
+    const albums = mineOutput
+      .filter(datum => datum.albumID != null || datum.albumName != null)
+      .map(applyOverrides);
     console.timeEnd("mending");
 
     console.log("Creating scraped JSON...");

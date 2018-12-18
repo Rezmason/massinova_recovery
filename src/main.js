@@ -65,7 +65,8 @@ const makeTimeline = (propertyNames, data) => {
 
     const truncatedTimeline = timeline.filter(
       (entry, index) =>
-        timeline[index - 1] == null || timeline[index - 1].value !== entry.value
+        timeline[index - 1] == null ||
+        timeline[index - 1].value.toString() !== entry.value.toString()
     );
 
     if (truncatedTimeline.length === 1) {
@@ -113,12 +114,12 @@ const mergeSongs = (songID, data) => {
     ? properties.plays[properties.plays.length - 1].value
     : properties.plays;
 
-  return { songID, songName, plays, properties, chart };
+  return { properties, songID, songName, plays, chart };
 };
 
 const mergeArtists = (artistName, data) => {
   const properties = makeTimeline(artistPropertyNames, data);
-  return { artistName, properties };
+  return { properties, artistName };
 };
 
 const mergeAlbums = (albumID, data) => {
@@ -128,7 +129,7 @@ const mergeAlbums = (albumID, data) => {
     ? properties.albumName[properties.albumName.length - 1].value
     : properties.albumName;
 
-  return { albumID, albumName, properties };
+  return { properties, albumID, albumName };
 };
 
 const allSongs = scrapedData.filter(datum => datum.songID != null);
@@ -171,6 +172,10 @@ const albumDataByAlbumID = new Map(
     .map(album => [album.albumID, album])
 );
 
-console.log(JSON.stringify(Array.from(songDataBySongID.values())));
-console.log(JSON.stringify(Array.from(artistDataByArtistName.values())));
-console.log(JSON.stringify(Array.from(albumDataByAlbumID.values())));
+console.log(
+  JSON.stringify({
+    songs: Array.from(songDataBySongID.values()),
+    artists: Array.from(artistDataByArtistName.values()),
+    albums: Array.from(albumDataByAlbumID.values())
+  })
+);

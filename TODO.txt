@@ -1,4 +1,15 @@
+You know what? Fix every discrepancy with override.json
+  That's what it's there for
+  Timestamps should only exist for values that change over time
+    Plays
+    Requests
+    Popularity
+    Chart data
+    Last played
+
 Tie songs to albums and artists
+
+
 
 Popularity labels
     (•) below average
