@@ -1,4 +1,5 @@
 const scraper = require("./scraper.js");
+const smoosh = require("./smoosh.js");
 
 const scrapedData = scraper.buildScrapedData(
   `./data`,
@@ -12,9 +13,12 @@ const earlierTimelineEntry = (e1, e2) => e1.timestamp - e2.timestamp;
 const songPropertyNames = [
   "songName",
   "bpm",
-  "chartRank",
-  "chartType",
-  "credits",
+  "credit_by",
+  "credit_mixed",
+  "credit_original",
+  "credit_remix",
+  "credit_vocals",
+  "credit_vs",
   "dateAdded",
   "duration",
   "genres",
@@ -35,6 +39,16 @@ const artistPropertyNames = [
   "bioWriter"
 ];
 const albumPropertyNames = ["albumName", "albumCDNowURL", "recordLabelName"];
+
+const creditPropertyNames = [
+  "artistName",
+  "credit_by",
+  "credit_mixed",
+  "credit_original",
+  "credit_remix",
+  "credit_vocals",
+  "credit_vs"
+];
 
 const makeTimeline = (propertyNames, data) => {
   const properties = {};
@@ -63,25 +77,51 @@ const makeTimeline = (propertyNames, data) => {
   return properties;
 };
 
-const mergeSongs = data => {
-  const songID = data[0].songID;
+const makeChart = data => {
+  const chartTypes = Array.from(
+    new Set(
+      data
+        .filter(datum => datum.chartType != null)
+        .map(({ chartType }) => chartType)
+    ).values()
+  );
+  const chart = {};
+  chartTypes.forEach(chartType => {
+    const timeline = [];
+    data.forEach(datum => {
+      if (datum.chartType === chartType)
+        timeline.push({
+          timestamp: datum.timestamp,
+          value: datum.chartRank
+        });
+    });
+    timeline.sort(earlierTimelineEntry);
+    chart[chartType] = timeline;
+  });
+  return chart;
+};
+
+const mergeSongs = (songID, data) => {
   const properties = makeTimeline(songPropertyNames, data);
+  const chart = makeChart(data);
 
   const songName = Array.isArray(properties.songName)
     ? properties.songName[properties.songName.length - 1].value
     : properties.songName;
 
-  return { songID, songName, properties };
+  const plays = Array.isArray(properties.plays)
+    ? properties.plays[properties.plays.length - 1].value
+    : properties.plays;
+
+  return { songID, songName, plays, properties, chart };
 };
 
-const mergeArtists = data => {
-  const artistName = data[0].artistName;
+const mergeArtists = (artistName, data) => {
   const properties = makeTimeline(artistPropertyNames, data);
   return { artistName, properties };
 };
 
-const mergeAlbums = data => {
-  const albumID = data[0].albumID;
+const mergeAlbums = (albumID, data) => {
   const properties = makeTimeline(albumPropertyNames, data);
 
   const albumName = Array.isArray(properties.albumName)
@@ -93,18 +133,44 @@ const mergeAlbums = data => {
 
 const allSongs = scrapedData.filter(datum => datum.songID != null);
 const allSongIDs = new Set(allSongs.map(({ songID }) => songID));
-const songData = Array.from(allSongIDs.values()).map(songID =>
-  mergeSongs(allSongs.filter(song => song.songID === songID))
+const songDataBySongID = new Map(
+  Array.from(allSongIDs.values())
+    .map(songID =>
+      mergeSongs(songID, allSongs.filter(song => song.songID === songID))
+    )
+    .map(song => [song.songID, song])
 );
 
+const allCreditNames = new Set(
+  smoosh(
+    scrapedData.map(datum =>
+      creditPropertyNames.map(propertyName => datum[propertyName])
+    )
+  )
+);
+allCreditNames.delete(undefined);
 const allArtists = scrapedData.filter(datum => datum.artistName != null);
-const allArtistIDs = new Set(allArtists.map(({ artistName }) => artistName));
-const artistData = Array.from(allArtistIDs.values()).map(artistName =>
-  mergeArtists(allArtists.filter(artist => artist.artistName === artistName))
+const artistDataByArtistName = new Map(
+  Array.from(allCreditNames.values())
+    .map(artistName =>
+      mergeArtists(
+        artistName,
+        allArtists.filter(artist => artist.artistName === artistName)
+      )
+    )
+    .map(artist => [artist.artistName, artist])
 );
 
 const allAlbums = scrapedData.filter(datum => datum.albumID != null);
 const allAlbumIDs = new Set(allAlbums.map(({ albumID }) => albumID));
-const albumData = Array.from(allAlbumIDs.values()).map(albumID =>
-  mergeAlbums(allAlbums.filter(album => album.albumID === albumID))
+const albumDataByAlbumID = new Map(
+  Array.from(allAlbumIDs.values())
+    .map(albumID =>
+      mergeAlbums(albumID, allAlbums.filter(album => album.albumID === albumID))
+    )
+    .map(album => [album.albumID, album])
 );
+
+console.log(JSON.stringify(Array.from(songDataBySongID.values())));
+console.log(JSON.stringify(Array.from(artistDataByArtistName.values())));
+console.log(JSON.stringify(Array.from(albumDataByAlbumID.values())));

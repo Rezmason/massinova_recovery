@@ -124,7 +124,7 @@ module.exports = (dom, timestamp, songID) => {
     if (artistNames.length === 1) {
       result.artistName = artistNames[0].text;
     } else {
-      result.credits = {};
+      const credits = {};
       let credit = null;
       let artist = null;
       artistElements.forEach(({ type, text }) => {
@@ -145,17 +145,19 @@ module.exports = (dom, timestamp, songID) => {
         }
 
         if (credit != null && artist != null) {
-          result.credits[credit] = artist;
+          credits[`credit_${credit}`] = artist;
           credit = null;
           artist = null;
         }
       });
 
-      if (result.credits.by != null) {
-        result.artistName = result.credits.by;
-      } else if (result.credits.original != null) {
-        result.artistName = result.credits.original;
+      if (credits.credit_by != null) {
+        result.artistName = credits.credit_by;
+      } else if (credits.credit_original != null) {
+        result.artistName = credits.credit_original;
       }
+
+      Object.assign(result, credits);
     }
   }
 

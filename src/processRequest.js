@@ -66,21 +66,19 @@ module.exports = (dom, timestamp, songID) => {
       }
 
       if (credit != null && artist != null) {
-        credits[credit] = artist;
+        credits[`credit_${credit}`] = artist;
         credit = null;
         artist = null;
       }
     });
 
-    if (credits.by != null) {
-      result.artistName = credits.by;
-    } else if (credits.original != null) {
-      result.artistName = credits.original;
+    if (credits.credit_by != null) {
+      result.artistName = credits.credit_by;
+    } else if (credits.credit_original != null) {
+      result.artistName = credits.credit_original;
     }
 
-    if (Object.keys(credits).length > 0) {
-      result.credits = credits;
-    }
+    Object.assign(result, credits);
   }
 
   if (Object.keys(result).length === 0) {
