@@ -47,16 +47,15 @@ const buildScrapedData = (
             key => override.match[key] === datum[key]
           )
         )
-        .map(override => Object.assign(datum, override.assign));
+        .forEach(override => Object.assign(datum, override.assign));
 
-    const songs = mineOutput
+    mineOutput
       .filter(datum => datum.songID != null || datum.songName != null)
-      .map(applyOverrides);
+      .forEach(applyOverrides);
 
-    // const artists = mineOutput.filter(datum => datum.artistName != null);
-    const albums = mineOutput
+    mineOutput
       .filter(datum => datum.albumID != null || datum.albumName != null)
-      .map(applyOverrides);
+      .forEach(applyOverrides);
     console.timeEnd("mending");
 
     console.log("Creating scraped JSON...");
