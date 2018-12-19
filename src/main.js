@@ -1,7 +1,8 @@
+const fs = require("fs");
 const scraper = require("./scraper.js");
 const merger = require("./merger.js");
 
-merger.mergeData(
+const latestData = merger.mergeData(
   scraper.buildScrapedData(
     `./data`,
     `./data.json`,
@@ -10,3 +11,11 @@ merger.mergeData(
   ),
   `./merged.json`
 );
+
+console.log("Saving latest JSON...");
+console.time("saveLatestJSON");
+fs.writeFileSync(
+  `./output/output_${Date.now()}.json`,
+  JSON.stringify(latestData, null, "    ")
+);
+console.timeEnd("saveLatestJSON");
