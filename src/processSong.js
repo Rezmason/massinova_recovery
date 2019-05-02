@@ -5,6 +5,15 @@ const numeric = /(\d+)/;
 const durationPattern = /\[(\d+):(\d+)\]/;
 const requestsPattern = /(\d+) requests/;
 const playsPattern = /(\d+) plays/;
+const dateFormatter = new Intl.DateTimeFormat("en-us", {
+  month: "short",
+  year: "numeric",
+  day: "numeric",
+  hour: "numeric",
+  minute: "numeric",
+  second: "numeric"
+});
+const lastPlayedPiecePattern = /(\d+ \w+)/g;
 const isFontTag = DOMUtils.quickMatch("font");
 const isATag = DOMUtils.quickMatch("a");
 const isTitleFontTag = element =>
@@ -12,7 +21,39 @@ const isTitleFontTag = element =>
     element.attribs.size === "5") ||
   element.attribs.class === "track-title";
 
+const timeSpansInSeconds = {};
+timeSpansInSeconds.minute = 60;
+timeSpansInSeconds.hour = timeSpansInSeconds.minute * 60;
+timeSpansInSeconds.day = timeSpansInSeconds.hour * 24;
+timeSpansInSeconds.week = timeSpansInSeconds.day * 7;
+timeSpansInSeconds.month = timeSpansInSeconds.day * 30;
+timeSpansInSeconds.year = timeSpansInSeconds.day * 365;
+const computeLastPlayed = (time, lastPlayed) => {
+  const components = lastPlayed.match(lastPlayedPiecePattern);
+  if (components == null) {
+    return null;
+  }
+  let secondsAgo = 0;
+  components
+    .map(component => component.split(/\s+/))
+    .forEach(([digits, label]) => {
+      const amount = parseInt(digits);
+      label = label.replace(/[s,]/g, "");
+      secondsAgo += timeSpansInSeconds[label] * amount;
+    });
+  return dateFormatter.format(new Date(time - secondsAgo * 1000));
+};
+
 module.exports = (dom, timestamp, songID) => {
+  const year = timestamp.substring(0, 4);
+  const month = timestamp.substring(4, 6);
+  const day = timestamp.substring(6, 8);
+  const hour = timestamp.substring(8, 10);
+  const minute = timestamp.substring(10, 12);
+  const second = timestamp.substring(12, 14);
+  const time = new Date(
+    `${year}-${month}-${day}T${hour}:${minute}:${second}`
+  ).getTime();
   const allElements = DOMUtils.flattenDOM(dom);
   const result = {};
 
@@ -41,7 +82,10 @@ module.exports = (dom, timestamp, songID) => {
       const aTag = DOMUtils.climbDOM(element, isATag);
 
       const durationData = durationPattern.exec(text);
-      if (durationData != null) {
+      if (
+        durationData != null &&
+        (parseInt(durationData[1]) > 0 || parseInt(durationData[2]) > 0)
+      ) {
         result.duration = `${durationData[1]}:${durationData[2]}`;
       } else if (aTag != null) {
         if (aTag.attribs.class === "album" || aTag.attribs.target === "album") {
@@ -78,10 +122,16 @@ module.exports = (dom, timestamp, songID) => {
               break;
             case "data":
               {
-                if (text.includes("added")) {
+                if (text.includes("added") && text.trim() !== "added ,") {
                   result.dateAdded = text.split("added")[1].trim();
                 } else if (text.includes("last played")) {
-                  result.lastPlayed = text.split("last played")[1].trim();
+                  const lastPlayed = computeLastPlayed(
+                    time,
+                    text.split("last played")[1].trim()
+                  );
+                  if (lastPlayed != null) {
+                    result.lastPlayed = lastPlayed;
+                  }
                 } else if (
                   text.includes("requests") ||
                   text.includes("plays")
@@ -98,7 +148,6 @@ module.exports = (dom, timestamp, songID) => {
               }
               break;
             case "popularity":
-            case "total-empty-slot":
               result.popularity = text.length;
               break;
             case "highlight":

@@ -1,8 +1,6 @@
 const DOMUtils = require("./DOMUtils.js");
 const mineUtils = require("./mineUtils.js");
 
-const numeric = /(\d+)/;
-
 module.exports = (dom, timestamp) => {
   const isTrackDiv = DOMUtils.quickMatch("div", "marker");
   const isTrackTD = DOMUtils.quickMatch("td");
@@ -82,17 +80,6 @@ module.exports = (dom, timestamp) => {
                     result.artistName = mineUtils.decodeEntities(
                       aTag.children[0].data
                     );
-                  }
-                }
-                break;
-              case "requests":
-              case "data":
-                {
-                  const matches = numeric.exec(
-                    mineUtils.decodeEntities(piece.children[0].data)
-                  );
-                  if (matches != null) {
-                    result.requests = parseFloat(matches[0]);
                   }
                 }
                 break;

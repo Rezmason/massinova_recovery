@@ -29,7 +29,7 @@ const extractFilenameData = filename => {
     console.warn(`NO MATCH: ${filename}`);
     return { filename, NO_MATCH: "" };
   }
-  const timestamp = parseFloat(matches[1]);
+  const timestamp = matches[1];
   const data = matches[2] === "?" ? parseQueryString(matches[3]) : {};
   return Object.assign(data, { filename, timestamp });
 };
@@ -40,7 +40,7 @@ const extractURLData = url => {
     console.warn(`NO MATCH: ${url}`);
     return { url, NO_MATCH: "" };
   }
-  const timestamp = parseFloat(matches[1]);
+  const timestamp = matches[1];
   const data = matches[2] === "?" ? parseQueryString(matches[3]) : {};
   return Object.assign(data, { url, timestamp });
 };
