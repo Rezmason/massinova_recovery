@@ -3,46 +3,48 @@ const smoosh = require("./smoosh.js");
 
 const earlierTimelineEntry = (e1, e2) => e1.timestamp - e2.timestamp;
 
-const songPropertyNames = [
-  "songID",
-  "songName",
-  "bpm",
-  "credit_by",
-  "credit_mixed",
-  "credit_original",
-  "credit_remix",
-  "credit_vocals",
-  "credit_vs",
-  "dateAdded",
-  "duration",
-  "genres",
+const lookup = "lookup";
+const guess = "guess";
 
-  "lastPlayed",
-  "numRequests",
-  "plays",
-  "popularity",
-  "requests",
+const songPropertyNames = {
+  songID: lookup,
+  songName: lookup,
+  bpm: lookup,
+  credit_by: lookup,
+  credit_mixed: null,
+  credit_original: null,
+  credit_remix: null,
+  credit_vocals: null,
+  credit_vs: null,
+  dateAdded: null,
+  duration: lookup,
+  genres: null,
 
-  "artistName",
-  "albumID"
-];
-const artistPropertyNames = [
-  "artistName",
-  "artistInfo_from",
-  "artistInfo_started",
-  "artistInfo_born",
-  "artistWebsite",
-  "bioPage1",
-  "bioPage2",
-  "bioPage3",
-  "bioWriter"
-];
-const albumPropertyNames = [
-  "albumName",
-  "albumID",
-  "albumCDNowURL",
-  "recordLabelName"
-];
+  lastPlayed: null,
+  plays: guess,
+  popularity: guess,
+  requests: guess,
+
+  artistName: lookup,
+  albumID: lookup
+};
+const artistPropertyNames = {
+  artistName: lookup,
+  artistInfo_from: null,
+  artistInfo_started: null,
+  artistInfo_born: null,
+  artistWebsite: null,
+  bioPage1: null,
+  bioPage2: null,
+  bioPage3: null,
+  bioWriter: null
+};
+const albumPropertyNames = {
+  albumName: lookup,
+  albumID: lookup,
+  albumCDNowURL: null,
+  recordLabelName: lookup
+};
 
 const creditPropertyNames = [
   "artistName",
@@ -56,7 +58,7 @@ const creditPropertyNames = [
 
 const makeTimeline = (propertyNames, data) => {
   const properties = {};
-  propertyNames.forEach(propertyName => {
+  Object.keys(propertyNames).forEach(propertyName => {
     const timeline = [];
     data.forEach(datum => {
       if (datum[propertyName] != null)
@@ -80,6 +82,10 @@ const makeTimeline = (propertyNames, data) => {
       truncatedTimeline.forEach(
         ({ timestamp, value }) => (properties[propertyName][timestamp] = value)
       );
+    } else if (propertyNames[propertyName]) {
+      properties[propertyName] = `__${
+        propertyNames[propertyName]
+      }__${propertyName}__`;
     }
   });
   return properties;
@@ -142,61 +148,70 @@ const mergeAlbums = (albumID, data) =>
   Object.assign({ albumID }, makeTimeline(albumPropertyNames, data));
 
 const mergeData = (scrapedData, mergedJsonPath) => {
-  console.log("Merging songs...");
-  console.time("mergeSongs");
-  const allSongs = scrapedData.filter(datum => datum.songID != null);
-  const allSongIDs = new Set(allSongs.map(({ songID }) => songID));
-  const mergedSongs = arrayToObject(
-    "songID",
-    Array.from(allSongIDs.values()).map(songID =>
-      mergeSongs(songID, allSongs.filter(song => song.songID === songID))
-    )
-  );
-  console.timeEnd("mergeSongs");
-
-  console.log("Merging artists...");
-  console.time("mergeArtists");
-  const allCreditNames = new Set(
-    smoosh(
-      scrapedData.map(datum =>
-        creditPropertyNames.map(propertyName => datum[propertyName])
+  if (!fs.existsSync(mergedJsonPath)) {
+    console.log("Merging songs...");
+    console.time("mergeSongs");
+    const allSongs = scrapedData.filter(datum => datum.songID != null);
+    const allSongIDs = new Set(allSongs.map(({ songID }) => songID));
+    const mergedSongs = arrayToObject(
+      "songID",
+      Array.from(allSongIDs.values()).map(songID =>
+        mergeSongs(songID, allSongs.filter(song => song.songID === songID))
       )
-    )
-  );
-  allCreditNames.delete(undefined);
-  const allArtists = scrapedData.filter(datum => datum.artistName != null);
-  const mergedArtists = arrayToObject(
-    "artistName",
-    Array.from(allCreditNames.values()).map(artistName =>
-      mergeArtists(
-        artistName,
-        allArtists.filter(artist => artist.artistName === artistName)
+    );
+    console.timeEnd("mergeSongs");
+
+    console.log("Merging artists...");
+    console.time("mergeArtists");
+    const allCreditNames = new Set(
+      smoosh(
+        scrapedData.map(datum =>
+          creditPropertyNames.map(propertyName => datum[propertyName])
+        )
       )
-    )
-  );
-  console.timeEnd("mergeArtists");
+    );
+    allCreditNames.delete(undefined);
+    const allArtists = scrapedData.filter(datum => datum.artistName != null);
+    const mergedArtists = arrayToObject(
+      "artistName",
+      Array.from(allCreditNames.values())
+        .map(artistName =>
+          mergeArtists(
+            artistName,
+            allArtists.filter(artist => artist.artistName === artistName)
+          )
+        )
+        .filter(({ artistName }) => !artistName.startsWith("__missing__"))
+    );
+    console.timeEnd("mergeArtists");
 
-  console.log("Merging albums...");
-  console.time("mergeAlbums");
-  const allAlbums = scrapedData.filter(datum => datum.albumID != null);
-  const allAlbumIDs = new Set(allAlbums.map(({ albumID }) => albumID));
-  const mergedAlbums = arrayToObject(
-    "albumID",
-    Array.from(allAlbumIDs.values()).map(albumID =>
-      mergeAlbums(albumID, allAlbums.filter(album => album.albumID === albumID))
-    )
-  );
-  console.timeEnd("mergeAlbums");
+    console.log("Merging albums...");
+    console.time("mergeAlbums");
+    const allAlbums = scrapedData.filter(datum => datum.albumID != null);
+    const allAlbumIDs = new Set(allAlbums.map(({ albumID }) => albumID));
+    const mergedAlbums = arrayToObject(
+      "albumID",
+      Array.from(allAlbumIDs.values())
+        .map(albumID =>
+          mergeAlbums(
+            albumID,
+            allAlbums.filter(album => album.albumID === albumID)
+          )
+        )
+        .filter(({ albumName }) => !albumName.startsWith("__missing__"))
+    );
+    console.timeEnd("mergeAlbums");
 
-  const mergeOutput = {
-    songs: mergedSongs,
-    artists: mergedArtists,
-    albums: mergedAlbums
-  };
-  console.log("Creating merged JSON...");
-  console.time("createMergedJSON");
-  fs.writeFileSync(mergedJsonPath, JSON.stringify(mergeOutput, null, " "));
-  console.timeEnd("createMergedJSON");
+    const mergeOutput = {
+      songs: mergedSongs,
+      artists: mergedArtists,
+      albums: mergedAlbums
+    };
+    console.log("Creating merged JSON...");
+    console.time("createMergedJSON");
+    fs.writeFileSync(mergedJsonPath, JSON.stringify(mergeOutput, null, " "));
+    console.timeEnd("createMergedJSON");
+  }
 
   console.log("Loading merged JSON...");
   console.time("loadMergedJSON");

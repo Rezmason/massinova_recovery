@@ -62,8 +62,6 @@ module.exports = (dom, timestamp, albumID) => {
         if (fontTag != null) {
           if (fontTag.attribs.class === "popularity") {
             result.popularity = piece.data.length;
-          } else if (fontTag.attribs.class === "requests") {
-            result.numRequests = parseFloat(piece.data);
           }
         }
       }

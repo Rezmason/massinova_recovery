@@ -1,16 +1,3 @@
-You know what? Fix every discrepancy with override.json
-  That's what it's there for
-  Timestamps should only exist for values that change over time
-    Plays
-    Requests
-    Popularity
-    Chart data
-    Last played
-
-Tie songs to albums and artists
-
-
-
 Popularity labels
     (•) below average
     (••) average
@@ -19,3 +6,17 @@ Popularity labels
     (•••••) very popular
     (••••••) unbelievable
     (•••••••) unrivaled
+
+Find correlation between requests/plays and popularity
+    Add guess objects
+    Guess popularity of songs with requests/plays
+    Guess requests/plays of songs with popularity
+
+Look up missing values
+    Spotify?
+
+Guess popularity of songs
+    Spotify?
+    Guess requests/plays of songs with guessed popularity
+
+...

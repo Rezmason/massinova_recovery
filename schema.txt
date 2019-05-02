@@ -1,22 +1,33 @@
 SONG
-  search: songID
+  key: songID
   properties:
+
+    songID
     songName
     bpm
-    chartRank
-    chartType
-    credits
+    credit_by
+    credit_mixed
+    credit_original
+    credit_remix
+    credit_vocals
+    credit_vs
     dateAdded
     duration
     genres
+
     lastPlayed
-    numRequests
     plays
     popularity
     requests
+
+    artistName
+    albumID
+
 ARTIST
-  search: artistName
+  key: artistName
   properties:
+
+    artistName
     artistInfo_from
     artistInfo_started
     artistInfo_born
@@ -25,9 +36,12 @@ ARTIST
     bioPage2
     bioPage3
     bioWriter
+
 ALBUM
-  search: albumID
+  key: albumID
   properties:
+
     albumName
+    albumID
     albumCDNowURL
     recordLabelName

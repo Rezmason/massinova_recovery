@@ -15,7 +15,7 @@ const latestData = merger.mergeData(
 console.log("Saving latest JSON...");
 console.time("saveLatestJSON");
 fs.writeFileSync(
-  `./output/output_${Date.now()}.json`,
+  `./output_${Date.now()}.json`,
   JSON.stringify(latestData, null, "    ")
 );
 console.timeEnd("saveLatestJSON");
