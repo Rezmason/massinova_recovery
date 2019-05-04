@@ -83,7 +83,7 @@ const makeTimeline = (propertyNames, data) => {
         ({ timestamp, value }) => (properties[propertyName][timestamp] = value)
       );
     } else if (propertyNames[propertyName]) {
-      properties[propertyName] = `__${
+      properties[propertyName] = `__*__${
         propertyNames[propertyName]
       }__${propertyName}__`;
     }
@@ -181,7 +181,7 @@ const mergeData = (scrapedData, mergedJsonPath) => {
             allArtists.filter(artist => artist.artistName === artistName)
           )
         )
-        .filter(({ artistName }) => !artistName.startsWith("__missing__"))
+        .filter(({ artistName }) => !artistName.startsWith("__*__"))
     );
     console.timeEnd("mergeArtists");
 
@@ -198,7 +198,7 @@ const mergeData = (scrapedData, mergedJsonPath) => {
             allAlbums.filter(album => album.albumID === albumID)
           )
         )
-        .filter(({ albumName }) => !albumName.startsWith("__missing__"))
+        .filter(({ albumName }) => !albumName.startsWith("__*__"))
     );
     console.timeEnd("mergeAlbums");
 
