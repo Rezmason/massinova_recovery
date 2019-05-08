@@ -8,10 +8,11 @@ const buildScrapedData = (
   dataPath,
   dataJsonPath,
   scrapedJsonPath,
-  overrideJsonPath
+  overrideJsonPath,
+  force
 ) => {
-  if (!fs.existsSync(scrapedJsonPath)) {
-    const mineSources = mines.buildMineSources(dataPath, dataJsonPath);
+  if (force || !fs.existsSync(scrapedJsonPath)) {
+    const mineSources = mines.buildMineSources(dataPath, dataJsonPath, force);
 
     console.log("Linking dom elements to parents...");
     console.time("linkDOMParents");

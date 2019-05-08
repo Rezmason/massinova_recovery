@@ -7,15 +7,32 @@ const latestData = merger.mergeData(
     `./data`,
     `./data.json`,
     `./scraped.json`,
-    `./override.json`
+    `./override.json`,
+    false
   ),
-  `./merged.json`
+  `./merged.json`,
+  true
 );
 
-console.log("Saving latest JSON...");
-console.time("saveLatestJSON");
+const parentheticals = /\s*\([^)]+\)/g;
+const apostrophes = /'/g;
 fs.writeFileSync(
-  `./output_${Date.now()}.json`,
-  JSON.stringify(latestData, null, "    ")
+  `./discogs/wgetsongs.sh`,
+  Object.values(latestData.songs)
+    .map(song => {
+      const { songID, songName, artistName, albumID } = song;
+      const album = latestData.albums[albumID];
+      const { albumName, recordLabelName } = album || {};
+
+      const safeSongName = songName
+        .replace(parentheticals, "")
+        .replace(apostrophes, "");
+
+      const filename = `./search/song_${songID}_${songName}.json`;
+      const url = `https://api.discogs.com/database/search?token=nxxJkARXfQpFJZddoKXRiVnkQyNHjXRjODjvoOOE&type=release&artist=${artistName}&track=${safeSongName}`;
+
+      songID, songName, artistName, albumID, albumName, recordLabelName;
+      return `URL="${url}"; FILE="${filename}"; wget -nc "$URL" -O "$FILE" && sleep 1`;
+    })
+    .join("\n")
 );
-console.timeEnd("saveLatestJSON");

@@ -42,8 +42,8 @@ const getMineSources = folderPath => {
   );
 };
 
-const buildMineSources = (dataPath, dataJsonPath) => {
-  if (!fs.existsSync(dataJsonPath)) {
+const buildMineSources = (dataPath, dataJsonPath, force) => {
+  if (force || !fs.existsSync(dataJsonPath)) {
     console.log("Creating data JSON...");
     console.time("createDataJSON");
     fs.writeFileSync(

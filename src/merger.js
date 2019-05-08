@@ -83,9 +83,9 @@ const makeTimeline = (propertyNames, data) => {
         ({ timestamp, value }) => (properties[propertyName][timestamp] = value)
       );
     } else if (propertyNames[propertyName]) {
-      properties[propertyName] = `__*__${
-        propertyNames[propertyName]
-      }__${propertyName}__`;
+      // properties[propertyName] = `__*__${
+      //   propertyNames[propertyName]
+      // }__${propertyName}__`;
     }
   });
   return properties;
@@ -147,8 +147,8 @@ const mergeArtists = (artistName, data) =>
 const mergeAlbums = (albumID, data) =>
   Object.assign({ albumID }, makeTimeline(albumPropertyNames, data));
 
-const mergeData = (scrapedData, mergedJsonPath) => {
-  if (!fs.existsSync(mergedJsonPath)) {
+const mergeData = (scrapedData, mergedJsonPath, force) => {
+  if (force || !fs.existsSync(mergedJsonPath)) {
     console.log("Merging songs...");
     console.time("mergeSongs");
     const allSongs = scrapedData.filter(datum => datum.songID != null);
