@@ -2,6 +2,10 @@
   "name": "massinova",
   "version": "1.0.0",
   "description": "mine the internet archive's captures of the massinova.com domain to list all the music they had in their collection",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Rezmason/massinova_recovery.git"
+  },
   "author": "rezmason",
   "license": "MIT",
   "scripts": {
@@ -15,9 +19,9 @@
     "htmlparser": "^1.7.7"
   },
   "devDependencies": {
-    "eslint": "^5.10.0",
-    "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.14.0",
-    "prettier": "^1.17.0"
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-plugin-import": "^2.18.0",
+    "prettier": "^1.18.2"
   }
 }
