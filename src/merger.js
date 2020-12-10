@@ -26,7 +26,10 @@ const songPropertyNames = {
   requests: guess,
 
   artistName: lookup,
-  albumID: lookup
+  albumID: lookup,
+
+  albumName: lookup,
+  recordLabelName: lookup
 };
 const artistPropertyNames = {
   artistName: lookup,
@@ -156,7 +159,10 @@ const mergeData = (scrapedData, mergedJsonPath, force) => {
     const mergedSongs = arrayToObject(
       "songID",
       Array.from(allSongIDs.values()).map(songID =>
-        mergeSongs(songID, allSongs.filter(song => song.songID === songID))
+        mergeSongs(
+          songID,
+          allSongs.filter(song => song.songID === songID)
+        )
       )
     );
     console.timeEnd("mergeSongs");

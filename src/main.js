@@ -36,3 +36,30 @@ fs.writeFileSync(
     })
     .join("\n")
 );
+
+/*
+const songs = Object.values(latestData.songs).map(song => {
+  const usefulKeys = {
+    songID: song.songID,
+    albumID: song.albumID,
+    artistName: song.artistName
+  };
+  const strings = [
+    song.albumName,
+    song.artistName,
+    song.recordLabelName,
+    song.songName,
+    song.credit_original,
+    song.credit_remix,
+    song.credit_by,
+    song.credit_mixed,
+    song.credit_vocals
+  ]
+    .filter(s => s)
+    .join(" ")
+    .replace(/[()]/g, "");
+  return { ...usefulKeys, strings };
+});
+
+fs.writeFileSync(`./blech.json`, JSON.stringify(songs));
+*/
